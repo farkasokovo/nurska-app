@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nurska — Referencia clínica offline para enfermería</title>
+  <meta name="description" content="Nurska es una app móvil offline de referencia clínica para profesionales y estudiantes de enfermería: escalas, calculadoras, farmacología, normas y gestión de turno activo." />
+
+  <!-- Poppins vía Google Fonts, igual que el aviso de privacidad -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/png" href="assets/nurska_icon.png" />
+
+  <style>
+    /* ============================================================
+       PALETA REAL DE NURSKA (extraída de lib/theme/app_theme.dart)
+       ============================================================ */
+    :root {
+      --primary: #96775B;
+      --primary-dark: #624933;
+      --secondary: #EFE9E4;
+      --light-secondary: #F6F3F0;
+      --accent-light: #D6C9BE;
+      --accent-dark: #CBA786;
+      --widget-brown: #DFD3C9;
+      --semi-dark: #7E6754;
+      --green-alert: #9C965C;
+      --red-alert: #9C5C61;
+
+      --radius-lg: 30px;
+      --radius-md: 20px;
+      --radius-sm: 15px;
+
+      --shadow-soft: 0 5px 16px rgba(0, 0, 0, 0.10);
+      --shadow-card: 0 6px 20px rgba(98, 73, 51, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      background-color: var(--secondary);
+      color: var(--primary-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    a { color: inherit; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      background: linear-gradient(160deg, var(--primary-dark) 0%, #56402d 100%);
+      color: var(--light-secondary);
+      padding: 64px 0 88px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* textura sutil de manchas cálidas, sin clichés médicos */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(203, 167, 134, 0.18), transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(150, 119, 91, 0.25), transparent 45%);
+      pointer-events: none;
+    }
+
+    .hero .wrap { position: relative; z-index: 1; }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text { flex: 1 1 380px; }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .brand-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-md);
+      background: var(--secondary);
+      padding: 6px;
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+    }
+
+    .brand-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 14px; }
+
+    .brand-name {
+      font-size: clamp(2.4rem, 7vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 4.5vw, 2.3rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    .hero p.tagline {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--accent-light);
+      max-width: 30ch;
+      margin-bottom: 20px;
+    }
+
+    .offline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(246, 243, 240, 0.12);
+      border: 1px solid rgba(246, 243, 240, 0.25);
+      color: var(--light-secondary);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .offline-badge svg { width: 16px; height: 16px; }
+
+    /* Botón grande "Descargar APK" */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--primary);
+      color: var(--light-secondary);
+      font-family: inherit;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 18px 34px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-download:hover {
+      background: #a5865f;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-download svg { width: 26px; height: 26px; }
+
+    .btn-note {
+      display: block;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--accent-light);
+    }
+
+    /* Mockup del hero */
+    .hero-mock { flex: 0 1 300px; display: flex; justify-content: center; }
+
+    .phone {
+      width: 260px;
+      aspect-ratio: 9 / 19;
+      background: var(--secondary);
+      border-radius: 38px;
+      border: 10px solid #3f2f21;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-appbar {
+      background: var(--primary-dark);
+      color: var(--light-secondary);
+      padding: 18px 18px 14px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .phone-body {
+      flex: 1;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+      gap: 12px;
+    }
+
+    .phone-tile {
+      background: var(--primary-dark);
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--light-secondary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 6px;
+    }
+
+    .phone-tile svg { width: 24px; height: 24px; }
+
+    .phone-tile.wide {
+      grid-column: span 2;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--primary);
+    }
+
+    /* ============================================================
+       SECCIONES GENERALES
+       ============================================================ */
+    section { padding: 72px 0; }
+
+    .section-head { text-align: center; margin-bottom: 48px; }
+
+    .section-head h2 {
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--semi-dark);
+      font-weight: 600;
+      max-width: 52ch;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       CARACTERÍSTICAS (tarjetas)
+       ============================================================ */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(98, 73, 51, 0.18);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--primary-dark);
+      color: var(--light-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .feature-icon svg { width: 30px; height: 30px; }
+
+    /* variación de color por tarjeta, siempre dentro de la paleta */
+    .feature-card:nth-child(2) .feature-icon { background: var(--primary); }
+    .feature-card:nth-child(3) .feature-icon { background: var(--semi-dark); }
+    .feature-card:nth-child(4) .feature-icon { background: var(--green-alert); }
+    .feature-card:nth-child(5) .feature-icon { background: var(--red-alert); }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .feature-card p {
+      color: var(--semi-dark);
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    /* ============================================================
+       CAPTURAS
+       ============================================================ */
+    .screens-section { background: var(--light-secondary); }
+
+    .screens-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 8px 4px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .screens-scroll::-webkit-scrollbar { height: 8px; }
+    .screens-scroll::-webkit-scrollbar-thumb {
+      background: var(--accent-dark);
+      border-radius: 999px;
+    }
+
+    .shot {
+      flex: 0 0 auto;
+      width: 220px;
+      aspect-ratio: 9 / 19;
+      border-radius: 14px;
+      scroll-snap-align: center;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(98, 73, 51, 0.18);
+    }
+
+    .shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .screens-hint {
+      text-align: center;
+      margin-top: 8px;
+      color: var(--semi-dark);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       INSTALACIÓN
+       ============================================================ */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      counter-reset: step;
+    }
+
+    .step {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 26px 24px 24px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: var(--light-secondary);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+    }
+
+    .step p {
+      color: var(--semi-dark);
+      font-size: 0.92rem;
+      font-weight: 400;
+    }
+
+    .install-note {
+      margin-top: 32px;
+      background: var(--widget-brown);
+      border: 1px solid rgba(126, 103, 84, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 18px 22px;
+      color: var(--semi-dark);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .install-note svg { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; color: var(--primary-dark); }
+
+    /* ============================================================
+       CTA FINAL
+       ============================================================ */
+    .cta-final {
+      background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--light-secondary);
+      text-align: center;
+      border-radius: 0;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--light-secondary);
+    }
+
+    .cta-final p {
+      color: var(--accent-light);
+      margin-bottom: 30px;
+      max-width: 46ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-final .btn-download { background: var(--light-secondary); color: var(--primary-dark); }
+    .cta-final .btn-download:hover { background: #ffffff; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: var(--primary-dark);
+      color: var(--accent-light);
+      padding: 48px 0 32px;
+    }
+
+    .disclaimer {
+      background: rgba(156, 92, 97, 0.18);
+      border: 1px solid rgba(156, 92, 97, 0.45);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      color: var(--light-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .disclaimer svg { width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px; }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--light-secondary);
+    }
+
+    .footer-brand img {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: var(--secondary);
+      padding: 3px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--accent-light);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--light-secondary); }
+
+    .footer-copy {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(214, 201, 190, 0.2);
+      font-size: 0.82rem;
+      color: rgba(214, 201, 190, 0.75);
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 760px) {
+      .hero { padding: 48px 0 64px; text-align: center; }
+      .hero-inner { justify-content: center; }
+      .brand-row { justify-content: center; }
+      .hero p.tagline { margin-left: auto; margin-right: auto; }
+      .hero-mock { margin-top: 12px; }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HERO ==================== -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="brand-row">
+            <div class="brand-logo">
+              <img src="assets/nurska_icon.png" alt="Logo de Nurska" />
+            </div>
+            <span class="brand-name">Nurska</span>
+          </div>
+
+          <h1>Tu referencia clínica de enfermería, siempre a la mano.</h1>
+          <p class="tagline">Escalas, calculadoras, farmacología y normas — para profesionales y estudiantes de enfermería.</p>
+
+          <div class="offline-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>
+            </svg>
+            100% offline · sin internet · sin cuentas
+          </div>
+
+          <div>
+            <a class="btn-download" href="https://github.com/farkasokovo/nurska-landing/releases/latest/download/nurska.apk" id="download-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Descargar APK
+            </a>
+            <span class="btn-note">Android · gratis · instalación fuera de Play Store</span>
+          </div>
+        </div>
+
+        <!-- Mockup del teléfono -->
+        <div class="hero-mock">
+          <div class="phone" aria-hidden="true">
+            <div class="phone-appbar">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Nurska
+            </div>
+            <div class="phone-body">
+              <div class="phone-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="4" y2="10"/><line x1="10" y1="20" x2="10" y2="4"/><line x1="16" y1="20" x2="16" y2="14"/></svg>
+                Escalas
+              </div>
+              <div class="phone-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Normas
+              </div>
+              <div class="phone-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h9l6 6v9a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                Fármacos
+              </div>
+              <div class="phone-tile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/></svg>
+                Calculadoras
+              </div>
+              <div class="phone-tile wide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><line x1="12" y1="12" x2="12" y2="2"/></svg>
+                Turno activo
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== CARACTERÍSTICAS ==================== -->
+  <section id="caracteristicas">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Todo lo que necesitas en un turno</h2>
+        <p>Herramientas pensadas para la práctica diaria de enfermería, listas para consultar sin conexión.</p>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="4" y2="10"/><line x1="10" y1="20" x2="10" y2="4"/><line x1="16" y1="20" x2="16" y2="14"/></svg>
+          </div>
+          <h3>Escalas clínicas</h3>
+          <p>Braden, Downton, Glasgow, EVNA y más — con cálculo automático de puntaje e interpretación del riesgo.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/></svg>
+          </div>
+          <h3>Calculadoras</h3>
+          <p>Dosis, goteo, superficie corporal y conversiones — resultados rápidos y confiables al lado de la cama.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h9l6 6v9a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>
+          </div>
+          <h3>Farmacología</h3>
+          <p>Fichas de medicamentos: indicaciones, vías, contraindicaciones, efectos e interacciones organizadas por categoría.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Normas oficiales</h3>
+          <p>Consulta las NOM y referencias clínicas relevantes para la práctica de enfermería en México, siempre disponibles.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><line x1="12" y1="12" x2="12" y2="2"/></svg>
+          </div>
+          <h3>Turno activo</h3>
+          <p>Organiza pacientes, pendientes y medicamentos de tu jornada en un solo lugar — tu tablero de turno personal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CAPTURAS ==================== -->
+  <section class="screens-section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Así se ve Nurska</h2>
+        <p>Una interfaz cálida y clara, diseñada para consultarse rápido durante el turno.</p>
+      </div>
+
+      <div class="screens-scroll">
+        <div class="shot"><img src="assets/screenshots/screenshot1.png" alt="Captura de Nurska: pantalla de inicio" loading="lazy" /></div>
+        <div class="shot"><img src="assets/screenshots/screenshot2.png" alt="Captura de Nurska: escalas clínicas" loading="lazy" /></div>
+        <div class="shot"><img src="assets/screenshots/screenshot3.png" alt="Captura de Nurska: ficha de fármaco" loading="lazy" /></div>
+        <div class="shot"><img src="assets/screenshots/screenshot4.png" alt="Captura de Nurska: calculadora" loading="lazy" /></div>
+        <div class="shot"><img src="assets/screenshots/screenshot5.png" alt="Captura de Nurska: normas oficiales" loading="lazy" /></div>
+        <div class="shot"><img src="assets/screenshots/screenshot6.png" alt="Captura de Nurska: gestión de pacientes" loading="lazy" /></div>
+        <div class="shot"><img src="assets/screenshots/screenshot7.png" alt="Captura de Nurska: gestión de pendientes" loading="lazy" /></div>
+        <div class="shot"><img src="assets/screenshots/screenshot8.png" alt="Captura de Nurska: gestión de medicamentos" loading="lazy" /></div>
+      </div>
+      <p class="screens-hint">Desliza para ver más →</p>
+    </div>
+  </section>
+
+  <!-- ==================== INSTALACIÓN ==================== -->
+  <section id="instalacion">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Cómo instalar Nurska</h2>
+        <p>Nurska se instala directamente desde este sitio. Solo toma un minuto.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <h3>Descarga el APK</h3>
+          <p>Toca el botón "Descargar APK". El archivo se guardará en tu carpeta de Descargas.</p>
+        </div>
+        <div class="step">
+          <h3>Permite la instalación</h3>
+          <p>Al abrir el archivo, Android te pedirá activar "Permitir de esta fuente" o "Fuentes desconocidas". Actívalo.</p>
+        </div>
+        <div class="step">
+          <h3>Instala</h3>
+          <p>Toca "Instalar" y espera unos segundos. Es seguro: la app no pide permisos de internet ni de datos.</p>
+        </div>
+        <div class="step">
+          <h3>Abre y listo</h3>
+          <p>Abre Nurska desde tu pantalla de inicio. Todo funciona sin conexión, desde el primer momento.</p>
+        </div>
+      </div>
+
+      <div class="install-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>El aviso de "fuente desconocida" es normal en cualquier app que se instala fuera de Google Play. Puedes desactivar ese permiso de nuevo después de instalar.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>Lleva Nurska a tu turno</h2>
+      <p>Gratis, sin registro y completamente offline. Hecho por enfermería, para enfermería.</p>
+      <a class="btn-download" href="https://github.com/farkasokovo/nurska-landing/releases/latest/download/nurska.apk" id="download-link-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Descargar APK
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="wrap">
+      <div class="disclaimer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Nurska es una herramienta de apoyo y consulta. <strong>No sustituye el juicio clínico profesional</strong>, la valoración individual del paciente ni los protocolos de tu institución. Verifica siempre con las fuentes oficiales.</span>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/nurska_icon.png" alt="Logo de Nurska" />
+          Nurska
+        </div>
+        <nav class="footer-links">
+          <a href="#caracteristicas">Características</a>
+          <a href="#instalacion">Instalación</a>
+          <a href="https://farkasokovo.github.io/nurska-privacidad/" target="_blank" rel="noopener">Aviso de privacidad</a>
+          <a href="mailto:nurska.app@gmail.com">Contacto</a>
+        </nav>
+      </div>
+
+      <p class="footer-copy">
+        © 2026 Nurska · Referencia clínica offline para enfermería · Hecho en México ·
+        <a href="mailto:nurska.app@gmail.com" style="text-decoration:none;">nurska.app@gmail.com</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
