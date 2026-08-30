@@ -1,5 +1,5 @@
 {
-  "ultimaVersion": "1.1.0",
+  "ultimaVersion": "1.2.0",
   "urlDescarga": "https://farkasokovo.github.io/nurska-app/",
-  "notas": "Nuevo módulo: Fichas esenciales."
+  "notas": "Nuevos medicamentos + Conversor de unidades (mcg, mg, g), mejoras de interfaz, y correción de errores"
 }
