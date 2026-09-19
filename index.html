@@ -2,33 +2,25 @@
 <html lang="es">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F1J9828SH7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F1J9828SH7');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1J9828SH7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F1J9828SH7');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nurska - Referencia clínica offline para enfermería</title>
-  <meta name="description" content="Nurska es una app móvil offline de referencia clínica para profesionales y estudiantes de enfermería: escalas, calculadoras, farmacología, normas y fichas esenciales de consulta rápida." />
+  <title>Nurska - Únete a la beta oficial en Google Play</title>
+  <meta name="description" content="Nurska está reuniendo candidatos para su prueba cerrada (beta) en Google Play. Solo para usuarios de Android. Súmate y ayuda a llevar Nurska a la Play Store." />
 
-  <!-- Poppins vía Google Fonts, igual que el aviso de privacidad -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Phosphor Icons, mismo set de íconos que usa la app -->
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-
   <link rel="icon" type="image/png" href="assets/nurska_icon.png" />
 
   <style>
-    /* ============================================================
-       PALETA REAL DE NURSKA (extraída de lib/theme/app_theme.dart)
-       ============================================================ */
     :root {
       --primary: #96775B;
       --primary-dark: #624933;
@@ -50,7 +42,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -59,6 +50,9 @@
       color: var(--primary-dark);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .wrap {
@@ -71,17 +65,30 @@
     a { color: inherit; }
 
     /* ============================================================
+       BANNER DE ESTADO
+       ============================================================ */
+    .status-bar {
+      background: var(--green-alert);
+      color: var(--light-secondary);
+      padding: 10px 0;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .status-bar i { font-size: 16px; vertical-align: -2px; margin-right: 6px; }
+
+    /* ============================================================
        HERO
        ============================================================ */
     .hero {
+      flex: 1;
       background: linear-gradient(160deg, var(--primary-dark) 0%, #56402d 100%);
       color: var(--light-secondary);
-      padding: 64px 0 88px;
+      padding: 56px 0 72px;
       position: relative;
       overflow: hidden;
     }
 
-    /* textura sutil de manchas cálidas, sin clichés médicos */
     .hero::before {
       content: "";
       position: absolute;
@@ -94,95 +101,101 @@
 
     .hero .wrap { position: relative; z-index: 1; }
 
-    .hero-inner {
-      display: flex;
-      align-items: center;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-
-    .hero-text { flex: 1 1 380px; }
-
     .brand-row {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
+      justify-content: center;
     }
 
     .brand-logo {
-      width: 72px;
-      height: 72px;
+      width: 64px;
+      height: 64px;
       border-radius: var(--radius-md);
       background: var(--secondary);
       padding: 6px;
       box-shadow: var(--shadow-soft);
       flex-shrink: 0;
     }
-
     .brand-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 14px; }
 
     .brand-name {
-      font-size: clamp(2.4rem, 7vw, 3.4rem);
+      font-size: clamp(2rem, 6vw, 2.8rem);
       font-weight: 700;
       letter-spacing: 0.5px;
     }
 
-    .hero h1 {
-      font-size: clamp(1.6rem, 4.5vw, 2.3rem);
-      font-weight: 700;
-      line-height: 1.25;
-      margin-bottom: 18px;
-    }
+    .hero-center { text-align: center; max-width: 640px; margin: 0 auto; }
 
-    .hero p.tagline {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--accent-light);
-      max-width: 30ch;
-      margin-bottom: 20px;
-    }
-
-    .offline-badge {
+    .beta-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: rgba(246, 243, 240, 0.12);
       border: 1px solid rgba(246, 243, 240, 0.25);
       color: var(--light-secondary);
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
-      margin-bottom: 32px;
+      margin-bottom: 26px;
+    }
+    .beta-badge i { font-size: 16px; line-height: 1; }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 18px;
     }
 
-    .offline-badge i { font-size: 16px; line-height: 1; }
+    .hero p.lead {
+      font-size: 1.08rem;
+      font-weight: 400;
+      color: var(--accent-light);
+      max-width: 46ch;
+      margin: 0 auto 18px;
+    }
 
-    /* Botón grande "Descargar APK" */
-    .btn-download {
+    .android-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--light-secondary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 34px;
+      background: rgba(156, 150, 92, 0.28);
+      border: 1px solid rgba(214, 201, 190, 0.35);
+      padding: 8px 18px;
+      border-radius: 999px;
+    }
+    .android-note i { font-size: 18px; line-height: 1; }
+
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--primary);
-      color: var(--light-secondary);
+      background: var(--accent-dark);
+      color: var(--primary-dark);
       font-family: inherit;
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 700;
       text-decoration: none;
       padding: 18px 34px;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-soft);
       transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      border: none;
     }
-
-    .btn-download:hover {
-      background: #a5865f;
+    .btn-primary:hover {
+      background: #d9b892;
       transform: translateY(-2px);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
     }
-
-    .btn-download i { font-size: 26px; line-height: 1; }
+    .btn-primary i { font-size: 24px; line-height: 1; }
 
     .btn-note {
       display: block;
@@ -191,91 +204,21 @@
       color: var(--accent-light);
     }
 
-    /* Mockup del hero */
-    .hero-mock { flex: 0 1 300px; display: flex; justify-content: center; }
-
-    .hero-shot {
-      width: 260px;
-      max-width: 100%;
-      height: auto;
-      display: block;
-      border-radius: var(--radius-md);
-      background: var(--secondary);
-      padding: 10px;
-      box-shadow: var(--shadow-soft);
-      box-sizing: border-box;
-    }
-    .phone {
-      width: 260px;
-      background: var(--secondary);
-      border-radius: 38px;
-      border: 10px solid #3f2f21;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .phone-appbar {
-      background: var(--primary-dark);
-      color: var(--light-secondary);
-      padding: 18px 18px 14px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .phone-body {
-      flex: 1;
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 1fr;
-      gap: 12px;
-    }
-
-    .phone-tile {
-      background: var(--primary-dark);
-      border-radius: var(--radius-sm);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--light-secondary);
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-align: center;
-      padding: 6px;
-    }
-
-    .phone-tile svg { width: 24px; height: 24px; }
-
-    .phone-tile.wide {
-      grid-column: span 2;
-      flex-direction: row;
-      justify-content: flex-start;
-      gap: 12px;
-      padding: 12px 16px;
-      background: var(--primary);
-    }
-
     /* ============================================================
-       SECCIONES GENERALES
+       CÓMO PARTICIPAR
        ============================================================ */
-    section { padding: 72px 0; }
+    .how {
+      background: var(--light-secondary);
+      padding: 64px 0;
+    }
 
-    .section-head { text-align: center; margin-bottom: 48px; }
-
+    .section-head { text-align: center; margin-bottom: 44px; }
     .section-head h2 {
-      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: 700;
       color: var(--primary-dark);
       margin-bottom: 10px;
     }
-
     .section-head p {
       color: var(--semi-dark);
       font-weight: 600;
@@ -283,112 +226,13 @@
       margin: 0 auto;
     }
 
-    /* ============================================================
-       CARACTERÍSTICAS (tarjetas)
-       ============================================================ */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .feature-card {
-      background: #ffffff;
-      border-radius: var(--radius-md);
-      padding: 28px 24px;
-      box-shadow: var(--shadow-card);
-      transition: transform 0.15s ease, box-shadow 0.2s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(98, 73, 51, 0.18);
-    }
-
-    .feature-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: var(--primary-dark);
-      color: var(--light-secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
-
-    .feature-icon i { font-size: 30px; line-height: 1; }
-
-    /* variación de color por tarjeta, siempre dentro de la paleta */
-    .feature-card:nth-child(2) .feature-icon { background: var(--primary); }
-    .feature-card:nth-child(3) .feature-icon { background: var(--semi-dark); }
-    .feature-card:nth-child(4) .feature-icon { background: var(--green-alert); }
-
-    .feature-card h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--primary-dark);
-    }
-
-    .feature-card p {
-      color: var(--semi-dark);
-      font-size: 0.95rem;
-      font-weight: 400;
-    }
-
-    /* ============================================================
-       CAPTURAS
-       ============================================================ */
-    .screens-section { background: var(--light-secondary); }
-
-    .screens-scroll {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 8px 4px 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .screens-scroll::-webkit-scrollbar { height: 8px; }
-    .screens-scroll::-webkit-scrollbar-thumb {
-      background: var(--accent-dark);
-      border-radius: 999px;
-    }
-
-    .shot {
-      flex: 0 0 auto;
-      width: 220px;
-      border-radius: 14px;
-      scroll-snap-align: center;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(98, 73, 51, 0.18);
-      align-self: flex-start;
-    }
-
-    .shot img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .screens-hint {
-      text-align: center;
-      margin-top: 8px;
-      color: var(--semi-dark);
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    /* ============================================================
-       INSTALACIÓN
-       ============================================================ */
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 20px;
       counter-reset: step;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .step {
@@ -396,7 +240,6 @@
       border-radius: var(--radius-md);
       padding: 26px 24px 24px;
       box-shadow: var(--shadow-card);
-      position: relative;
     }
 
     .step::before {
@@ -421,109 +264,27 @@
       margin-bottom: 6px;
       color: var(--primary-dark);
     }
+    .step p { color: var(--semi-dark); font-size: 0.92rem; font-weight: 400; }
 
-    .step p {
-      color: var(--semi-dark);
-      font-size: 0.92rem;
-      font-weight: 400;
-    }
+    .how-cta { text-align: center; margin-top: 40px; }
+    .how-cta .btn-primary { background: var(--primary-dark); color: var(--light-secondary); }
+    .how-cta .btn-primary:hover { background: var(--primary); }
 
-    .install-note {
-      margin-top: 32px;
+    .privacy-note {
+      max-width: 620px;
+      margin: 32px auto 0;
       background: var(--widget-brown);
       border: 1px solid rgba(126, 103, 84, 0.35);
       border-radius: var(--radius-sm);
-      padding: 18px 22px;
+      padding: 16px 20px;
       color: var(--semi-dark);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       display: flex;
       align-items: flex-start;
       gap: 12px;
     }
-
-    .install-note i { font-size: 22px; line-height: 1; flex-shrink: 0; margin-top: 2px; color: var(--primary-dark); }
-
-    /* ============================================================
-       CTA FINAL
-       ============================================================ */
-
-    /* Franja de acceso rápido a actualización */
-    .update-bar {
-      background: var(--primary-dark);
-      color: var(--light-secondary);
-      padding: 10px 0;
-      font-size: 0.95rem;
-    }
-    .update-bar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .update-bar-text { font-weight: 500; }
-    .update-bar-btn {
-      background: var(--light-secondary);
-      color: var(--primary-dark);
-      padding: 7px 16px;
-      border-radius: var(--radius-sm);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      white-space: nowrap;
-      transition: background 0.2s;
-    }
-    .update-bar-btn:hover { background: #ffffff; }
-
-    /* Sección de novedades / changelog */
-    .novedades { background: var(--light-secondary); }
-    .changelog {
-      max-width: 640px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .changelog-item {
-      background: #ffffff;
-      border-radius: var(--radius-md);
-      padding: 20px 24px;
-      box-shadow: var(--shadow-card);
-      border-left: 5px solid var(--accent-dark);
-    }
-    .changelog-version {
-      font-weight: 700;
-      color: var(--primary-dark);
-      font-size: 1.05rem;
-      margin: 0 0 4px 0;
-    }
-    .changelog-desc { margin: 0; color: var(--semi-dark); font-size: 0.97rem; }
-
-    .cta-final {
-      background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: var(--light-secondary);
-      text-align: center;
-      border-radius: 0;
-    }
-
-    .cta-final h2 {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 700;
-      margin-bottom: 14px;
-      color: var(--light-secondary);
-    }
-
-    .cta-final p {
-      color: var(--accent-light);
-      margin-bottom: 30px;
-      max-width: 46ch;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-final .btn-download { background: var(--light-secondary); color: var(--primary-dark); }
-    .cta-final .btn-download:hover { background: #ffffff; }
+    .privacy-note i { font-size: 20px; line-height: 1; flex-shrink: 0; margin-top: 2px; color: var(--primary-dark); }
 
     /* ============================================================
        FOOTER
@@ -531,24 +292,8 @@
     footer {
       background: var(--primary-dark);
       color: var(--accent-light);
-      padding: 48px 0 32px;
+      padding: 40px 0 28px;
     }
-
-    .disclaimer {
-      background: rgba(156, 92, 97, 0.18);
-      border: 1px solid rgba(156, 92, 97, 0.45);
-      border-radius: var(--radius-sm);
-      padding: 16px 20px;
-      color: var(--light-secondary);
-      font-size: 0.9rem;
-      font-weight: 600;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .disclaimer i { font-size: 22px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
 
     .footer-grid {
       display: flex;
@@ -566,7 +311,6 @@
       font-size: 1.2rem;
       color: var(--light-secondary);
     }
-
     .footer-brand img {
       width: 40px; height: 40px;
       border-radius: 12px;
@@ -581,13 +325,7 @@
       font-size: 0.92rem;
       font-weight: 600;
     }
-
-    .footer-links a {
-      text-decoration: none;
-      color: var(--accent-light);
-      transition: color 0.2s ease;
-    }
-
+    .footer-links a { text-decoration: none; color: var(--accent-light); transition: color 0.2s ease; }
     .footer-links a:hover { color: var(--light-secondary); }
 
     .footer-copy {
@@ -599,203 +337,93 @@
       text-align: center;
     }
 
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
     @media (max-width: 760px) {
-      .hero { padding: 48px 0 64px; text-align: center; }
-      .hero-inner { justify-content: center; }
-      .brand-row { justify-content: center; }
-      .hero p.tagline { margin-left: auto; margin-right: auto; }
-      .hero-mock { margin-top: 12px; }
-      section { padding: 56px 0; }
+      .hero { padding: 44px 0 56px; }
+      .how { padding: 52px 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ==================== HERO ==================== -->
-  <!-- ==================== ACCESO RÁPIDO A ACTUALIZACIÓN ==================== -->
-  <div class="update-bar">
-    <div class="wrap update-bar-inner">
-      <span class="update-bar-text">¿Ya tienes Nurska y vienes a actualizar?</span>
-      <a class="update-bar-btn" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk" target="_blank" rel="noopener">
-        Descargar última versión
-      </a>
-    </div>
+  <!-- ==================== BANNER DE ESTADO ==================== -->
+  <div class="status-bar">
+    <i class="ph ph-rocket-launch"></i>
+    Nurska está reuniendo candidatos para su beta oficial en Google Play
   </div>
 
-  <header class="hero" id="descargar">
+  <!-- ==================== HERO ==================== -->
+  <header class="hero">
     <div class="wrap">
-      <div class="hero-inner">
-        <div class="hero-text">
-          <div class="brand-row">
-            <div class="brand-logo">
-              <img src="assets/nurska_icon.png" alt="Logo de Nurska" />
-            </div>
-            <span class="brand-name">Nurska</span>
-          </div>
+      <div class="brand-row">
+        <div class="brand-logo">
+          <img src="assets/nurska_icon.png" alt="Logo de Nurska" />
+        </div>
+        <span class="brand-name">Nurska</span>
+      </div>
 
-          <h1>Tu referencia clínica de enfermería, siempre a la mano.</h1>
-          <p class="tagline">Escalas, calculadoras, farmacología y normas: para profesionales y estudiantes de enfermería.</p>
-
-          <div class="offline-badge">
-            <i class="ph ph-wifi-slash"></i>
-            100% offline - Sin internet - Sin cuentas
-          </div>
-
-          <div>
-            <a class="btn-download" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk" target="_blank" rel="noopener" id="download-link">
-              <i class="ph ph-download-simple"></i>
-              Descargar APK
-            </a>
-            <span class="btn-note">Solo Android</span>
-          </div>
+      <div class="hero-center">
+        <div class="beta-badge">
+          <i class="ph ph-flask"></i>
+          Prueba cerrada · Beta oficial
         </div>
 
-        <!-- Mockup del teléfono -->
-        <div class="hero-mock">
-          <img src="assets/screenshots/screenshot1.png" alt="Pantalla de inicio de Nurska" class="hero-shot" />
+        <h1>Sé parte de la beta de Nurska en Google Play</h1>
+        <p class="lead">
+          Nurska está a un paso de llegar a la Play Store, y para lograrlo necesita
+          un grupo de personas que la prueben durante 14 días. Tu participación ayuda
+          a que la app esté disponible para toda la comunidad de enfermería.
+        </p>
+
+        <div class="android-note">
+          <i class="ph ph-android-logo"></i>
+          Solo para usuarios de Android
         </div>
-          </div>
+
+        <div>
+          <a class="btn-primary" id="join-btn" href="#" rel="noopener">
+            <i class="ph ph-envelope-simple"></i>
+            Quiero unirme a la beta
+          </a>
+          <span class="btn-note">Se abrirá un correo con la plantilla lista para enviar</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ==================== CARACTERÍSTICAS ==================== -->
-  <section id="caracteristicas">
+  <!-- ==================== CÓMO PARTICIPAR ==================== -->
+  <section class="how">
     <div class="wrap">
       <div class="section-head">
-        <h2>Todo lo que necesitas en un turno</h2>
-        <p>Herramientas pensadas para la práctica diaria de enfermería, listas para consultar sin conexión.</p>
-      </div>
-
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="ph ph-chart-bar-horizontal"></i>
-          </div>
-          <h3>Escalas clínicas</h3>
-          <p>Braden, Downton, Glasgow, EVNA y más! + cálculo automático de puntaje e interpretación del riesgo.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="ph ph-calculator"></i>
-          </div>
-          <h3>Calculadoras</h3>
-          <p>Dosis, goteo, y conversiones: Resultados rápidos.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="ph ph-pill"></i>
-          </div>
-          <h3>Farmacología</h3>
-          <p>Fichas de medicamentos: indicaciones, vías, contraindicaciones, efectos e interacciones organizadas por categoría.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="ph ph-book-open"></i>
-          </div>
-          <h3>Normas oficiales</h3>
-          <p>Consulta las NOM y referencias clínicas relevantes para la práctica de enfermería en México, siempre disponibles.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CAPTURAS ==================== -->
-  <section class="screens-section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Así se ve Nurska</h2>
-        <p>Una interfaz cálida y clara, diseñada para consultarse rápido durante el turno.</p>
-      </div>
-
-      <div class="screens-scroll">
-        <div class="shot"><img src="assets/screenshots/screenshot2.png" alt="Captura de Nurska: escalas clínicas" loading="lazy" /></div>
-        <div class="shot"><img src="assets/screenshots/screenshot3.png" alt="Captura de Nurska: ficha de fármaco" loading="lazy" /></div>
-        <div class="shot"><img src="assets/screenshots/screenshot4.png" alt="Captura de Nurska: calculadora" loading="lazy" /></div>
-        <div class="shot"><img src="assets/screenshots/screenshot5.png" alt="Captura de Nurska: normas oficiales" loading="lazy" /></div>
-      </div>
-      <p class="screens-hint">Desliza para ver más →</p>
-    </div>
-  </section>
-
-  <!-- ==================== INSTALACIÓN ==================== -->
-  <section id="instalacion">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Cómo instalar Nurska</h2>
-        <p>Nurska se instala directamente desde este sitio. Solo toma un minuto.</p>
+        <h2>Cómo participar</h2>
+        <p>Es rápido: solo necesitas tu correo de Google (Gmail) y un dispositivo Android.</p>
       </div>
 
       <div class="steps">
         <div class="step">
-          <h3>Descarga el APK</h3>
-          <p>Toca el botón "Descargar APK". El archivo se guardará en tu carpeta de Descargas.</p>
+          <h3>Envía tu correo</h3>
+          <p>Toca el botón "Quiero unirme a la beta". Se abrirá un correo con una plantilla; solo agrega tu correo de Google (Gmail) y envíalo.</p>
         </div>
         <div class="step">
-          <h3>Permite la instalación</h3>
-          <p>Al abrir el archivo, Android te pedirá activar "Permitir de esta fuente" o "Fuentes desconocidas". Actívalo.</p>
+          <h3>Te agrego a la lista</h3>
+          <p>Registro tu correo como tester autorizado en Google Play y te envío el enlace de acceso a la beta.</p>
         </div>
         <div class="step">
-          <h3>Instala</h3>
-          <p>Toca "Instalar" y espera unos segundos. Es seguro: la app no pide permisos de internet ni de datos.</p>
-        </div>
-        <div class="step">
-          <h3>Abre y listo</h3>
-          <p>Abre Nurska desde tu pantalla de inicio. Todo funciona sin conexión, desde el primer momento.</p>
+          <h3>Instala y prueba</h3>
+          <p>Instalas Nurska desde Google Play con esa misma cuenta y la usas durante los 14 días de la prueba. ¡Listo!</p>
         </div>
       </div>
 
-      <div class="install-note">
+      <div class="how-cta">
+        <a class="btn-primary" id="join-btn-2" href="#" rel="noopener">
+          <i class="ph ph-envelope-simple"></i>
+          Quiero unirme a la beta
+        </a>
+      </div>
+
+      <div class="privacy-note">
         <i class="ph ph-info"></i>
-        <span>El aviso de "fuente desconocida" es normal en cualquier app que se instala fuera de Google Play. Puedes desactivar ese permiso de nuevo después de instalar.</span>
+        <span>Tu correo se usa únicamente para registrarte como tester en Google Play y enviarte el enlace de la beta. Nurska sigue siendo offline y no recolecta datos dentro de la app.</span>
       </div>
-    </div>
-  </section>
-
-  <!-- ==================== CTA FINAL ==================== -->
-  <!-- ==================== NOVEDADES ==================== -->
-  <section class="novedades">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Novedades</h2>
-        <p>Cada versión de Nurska mejora con la ayuda de quienes la usan.</p>
-      </div>
-      <div class="changelog">
-        <div class="changelog-item">
-          <p class="changelog-version">Versión 1.2.1</p>
-          <p class="changelog-desc">Nueva pantalla de actualizaciones en el menú, con verificación manual y las novedades de la versión instalada. La calculadora de regla de tres acepta mcg, mg y g también en la presentación del fármaco, y suma una pestaña de conversor entre esas unidades. Correcciones al comportamiento del botón atrás y al espacio inferior en las listas.</p>
-        </div>
-        <div class="changelog-item">
-          <p class="changelog-version">Versión 1.2.0</p>
-          <p class="changelog-desc">Cinco medicamentos nuevos en Farmacología (omeprazol, pantoprazol, metoclopramida, ondansetrón, salbutamol). El goteo IV acepta minutos además de horas. Nuevo diseño en las fichas de medicamentos, escalas y calculadoras, con íconos por sección. Campos numéricos más compactos y con etiqueta flotante. Correcciones a los botones que se encimaban con la barra de navegación del sistema.</p>
-        </div>
-        <div class="changelog-item">
-          <p class="changelog-version">Versión 1.1.0</p>
-          <p class="changelog-desc">Nuevo módulo Esenciales: fichas de referencia rápida sobre insumos, paciente, equipo y códigos. La sección Turno activo se pospone hasta que próximas mejoras sean implementadas.</p>
-        </div>
-        <div class="changelog-item">
-          <p class="changelog-version">Versión 1.0.0</p>
-          <p class="changelog-desc">Primera versión de Nurska: escalas clínicas, calculadoras, farmacología, normas oficiales y gestión de turno. Todo sin conexión a internet.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-final">
-    <div class="wrap">
-      <h2>Lleva Nurska a tu turno</h2>
-      <p>Gratis, sin registro y completamente offline. Hecho por enfermería, para enfermería.</p>
-      <a class="btn-download" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk" target="_blank" rel="noopener" id="download-link-2">
-        <i class="ph ph-download-simple"></i>
-        Descargar APK
-      </a>
     </div>
   </section>
 
@@ -808,8 +436,6 @@
           Nurska
         </div>
         <nav class="footer-links">
-          <a href="#caracteristicas">Características</a>
-          <a href="#instalacion">Instalación</a>
           <a href="https://farkasokovo.github.io/nurska-privacidad/" target="_blank" rel="noopener">Aviso de privacidad</a>
           <a href="mailto:nurska.app@gmail.com">Contacto</a>
         </nav>
@@ -821,6 +447,29 @@
       </p>
     </div>
   </footer>
+
+  <!-- ==================== PLANTILLA DE CORREO ==================== -->
+  <script>
+    (function () {
+      var destino = "nurska.app@gmail.com";
+      var asunto = "Quiero unirme a la beta de Nurska";
+      var cuerpo =
+        "¡Hola! Me gustaría participar en la prueba cerrada (beta) de Nurska en Google Play.\n\n" +
+        "Mi correo de Google (Gmail) para acceder a la beta es:\n" +
+        "[ escribe aquí tu correo de Google ]\n\n" +
+        "Confirmo que uso un dispositivo Android.\n\n" +
+        "¡Gracias!";
+
+      var mailto = "mailto:" + destino +
+        "?subject=" + encodeURIComponent(asunto) +
+        "&body=" + encodeURIComponent(cuerpo);
+
+      ["join-btn", "join-btn-2"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.setAttribute("href", mailto);
+      });
+    })();
+  </script>
 
 </body>
 </html>
