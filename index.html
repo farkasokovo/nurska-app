@@ -12,673 +12,676 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nurska · Referencia clínica de enfermería</title>
-  <meta name="description" content="Escalas, fármacos, calculadoras y fichas de consulta rápida para enfermería. Funciona sin señal, sin cuenta y sin anuncios. Descarga gratis para Android.">
+  <title>Nurska | Referencia clínica de enfermería</title>
+  <meta name="description" content="Escalas, fármacos, calculadoras y fichas de consulta rápida para enfermería. Funciona sin señal, sin cuenta y sin anuncios. Gratis para Android.">
   <meta name="theme-color" content="#624933">
 
   <!-- Vista previa al compartir el enlace (WhatsApp, Facebook, etc.) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
-  <meta property="og:title" content="Nurska · Referencia clínica de enfermería">
-  <meta property="og:description" content="Escalas, fármacos y procedimientos que necesitas en el turno. Funciona sin señal. Gratis para Android.">
+  <meta property="og:title" content="Nurska | Referencia clínica de enfermería">
+  <meta property="og:description" content="Escalas, fármacos y calculadoras para consultar en pleno turno. Funciona sin señal. Gratis para Android.">
   <meta property="og:url" content="https://farkasokovo.github.io/nurska-app/">
   <meta property="og:image" content="https://farkasokovo.github.io/nurska-app/assets/nurska_icon.png">
 
-  <link rel="icon" type="image/png" href="assets/nurska_icon.png">
-  <link rel="apple-touch-icon" href="assets/nurska_icon.png">
+  <link rel="icon" type="image/png" href="assets/img/icono-192.png">
+  <link rel="apple-touch-icon" href="assets/img/icono-192.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <!-- Phosphor: el mismo set de íconos que usa la app -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
 
   <style>
   /* ---------------------------------------------------------------
-     Tokens. Los colores salen de lib/theme/app_theme.dart de la app,
-     para que sitio y app se lean como una misma cosa.
+     Paleta de la app (lib/theme/app_theme.dart). El sitio y la app
+     deben leerse como la misma cosa.
      --------------------------------------------------------------- */
   :root {
     color-scheme: light;
-    --ground:   #F6F3F0;   /* lightSecondaryColor */
-    --paper:    #EFE9E4;   /* secondaryColor      */
-    --rule:     #DFD3C9;   /* widgetLightBrown    */
-    --rule-soft:#E7DED6;
-    --ink:      #2F2318;   /* darkestColor        */
-    --ink-2:    #624933;   /* darkPrimaryColor    */
-    --ink-3:    #8A7361;
-    --accent:   #624933;
-    --accent-on:#F6F3F0;
-    --verify:   #7E7A45;   /* greenAlert, oscurecido para contraste */
-    --shadow:   0 1px 2px rgba(47,35,24,.06), 0 8px 24px -12px rgba(47,35,24,.18);
+    --cafe:        #624933;  /* darkPrimaryColor: encabezados, botones */
+    --cafe-hondo:  #4E3A28;
+    --cocoa:       #96775B;  /* primary: botones de categoría */
+    --caramelo:    #CBA786;  /* accentDarkColor */
+    --crema:       #F6F3F0;  /* lightSecondaryColor */
+    --lino:        #EFE9E4;  /* secondaryColor */
+    --arena:       #DFD3C9;  /* widgetLightBrown */
+    --oliva:       #7E7A45;  /* greenAlert, oscurecido para contraste */
 
-    --measure: 34rem;
-    --step--1: .8125rem;
-    --step-0:  1rem;
-    --step-1:  1.1875rem;
-    --step-2:  1.5rem;
-    --step-4:  2.75rem;
+    --fondo:  var(--crema);
+    --papel:  #FFFFFF;
+    --tinta:  #2F2318;
+    --tinta-2:var(--cafe);
+    --tinta-3:#7A6453;
+    --linea:  var(--arena);
+
+    --r-grande: 30px;   /* radios de la app: 30 botones, 20 tarjetas, 15 mosaicos */
+    --r-tarjeta: 20px;
+    --r-mosaico: 15px;
+    --sombra: 0 1px 2px rgba(47,35,24,.06), 0 12px 28px -16px rgba(47,35,24,.35);
   }
 
-  /* Modo oscuro: sigue la configuración del teléfono o la computadora. */
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      --ground:   #1C1610;
-      --paper:    #271F18;
-      --rule:     #3B2F25;
-      --rule-soft:#332822;
-      --ink:      #EFE9E4;
-      --ink-2:    #DFD3C9;
-      --ink-3:    #A38F7C;
-      --accent:   #CBA786;   /* accentDarkColor */
-      --accent-on:#241B14;
-      --verify:   #BDB679;
-      --shadow:   0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.6);
+      --fondo:  #1C1610;
+      --papel:  #271F18;
+      --tinta:  #EFE9E4;
+      --tinta-2:#DFD3C9;
+      --tinta-3:#A9937F;
+      --linea:  #3B2F25;
+      --oliva:  #BDB679;
+      --sombra: 0 1px 2px rgba(0,0,0,.4), 0 14px 30px -16px rgba(0,0,0,.7);
     }
   }
 
   * { box-sizing: border-box; }
-
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--ground);
-    color: var(--ink);
+    background: var(--fondo);
+    color: var(--tinta);
     font-family: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: var(--step-0);
+    font-size: 1rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-
-  .wrap {
-    max-width: 44rem;
-    margin-inline: auto;
-    padding-inline: 20px;
-  }
-
-  .mono {
-    font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    font-variant-numeric: tabular-nums;
-  }
-
-  h1, h2 { text-wrap: balance; margin: 0; font-weight: 600; letter-spacing: -.012em; }
-  p { margin: 0; }
+  h1, h2, h3, p { margin: 0; }
+  h1, h2 { text-wrap: balance; letter-spacing: -.02em; }
   a { color: inherit; }
-  em { font-style: normal; color: var(--ink-2); }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 68rem; margin-inline: auto; padding-inline: 20px; }
 
-  :where(a, button):focus-visible {
-    outline: 2px solid var(--accent);
+  :where(a, summary):focus-visible {
+    outline: 3px solid var(--caramelo);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 8px;
   }
 
   /* ---------------------------------------------------------------
-     Encabezado
+     Botones: píldora, como en la app
      --------------------------------------------------------------- */
-  .top {
-    display: flex;
+  .btn {
+    display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding-block: 22px 0;
+    font: 600 1.125rem/1 "Poppins", sans-serif;
+    text-decoration: none;
+    padding: 18px 30px;
+    border-radius: var(--r-grande);
+    transition: transform .12s ease, filter .15s ease;
   }
-  .mark { width: 34px; height: 34px; flex: none; display: block; }
-  .wordmark {
-    font-size: var(--step-1);
-    font-weight: 700;
-    letter-spacing: -.02em;
-    color: var(--ink-2);
+  .btn i { font-size: 1.5rem; }
+  .btn:hover { filter: brightness(1.06); }
+  .btn:active { transform: translateY(1px); }
+  .btn-claro { background: var(--crema); color: var(--cafe); box-shadow: 0 10px 24px -10px rgba(0,0,0,.45); }
+
+  /* ---------------------------------------------------------------
+     Aviso para quien viene a actualizar
+     --------------------------------------------------------------- */
+  .aviso {
+    background: var(--cafe-hondo);
+    color: var(--arena);
+    font-size: .875rem;
   }
-  .chip {
-    margin-left: auto;
-    font-size: .6875rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    padding: 3px 10px;
-    white-space: nowrap;
-  }
+  .aviso .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 14px; padding-block: 9px; }
+  .aviso a { color: var(--crema); font-weight: 600; text-underline-offset: 3px; }
 
   /* ---------------------------------------------------------------
      Portada
      --------------------------------------------------------------- */
-  .hero { padding-block: 46px 40px; }
-  .eyebrow {
-    font-size: .75rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 20px;
+  .portada {
+    background:
+      radial-gradient(60rem 30rem at 110% 0%, rgba(203,167,134,.22), transparent 60%),
+      linear-gradient(165deg, var(--cafe) 0%, var(--cafe-hondo) 100%);
+    color: var(--crema);
+    overflow: hidden;
   }
-  .hero h1 {
-    font-size: var(--step-4);
-    line-height: 1.1;
-    letter-spacing: -.028em;
-    max-width: 18ch;
+  .portada .wrap {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 40px;
+    align-items: end;
+    padding-top: 40px;
   }
-  .hero .lede {
+  .marca { display: flex; align-items: center; gap: 14px; margin-bottom: 44px; }
+  .marca img { width: 56px; height: 56px; border-radius: 16px; background: var(--lino); padding: 4px; }
+  .marca span { font-size: 1.75rem; font-weight: 700; letter-spacing: -.01em; }
+
+  .portada h1 {
+    font-size: clamp(2.25rem, 5.4vw, 3.6rem);
+    line-height: 1.08;
+    font-weight: 700;
+    max-width: 15ch;
+  }
+  .portada .lede {
     margin-top: 20px;
-    max-width: var(--measure);
-    color: var(--ink-2);
-    font-size: var(--step-1);
-    line-height: 1.55;
+    font-size: 1.15rem;
+    color: var(--arena);
+    max-width: 34ch;
+  }
+  .promesas {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .promesas li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .875rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(246,243,240,.1);
+    border: 1px solid rgba(246,243,240,.22);
+  }
+  .promesas i { font-size: 1.05rem; color: var(--caramelo); }
+  .descarga-nota { margin-top: 14px; font-size: .875rem; color: var(--arena); }
+  .portada-texto { padding-bottom: 64px; }
+
+  /* Teléfono partido por el borde de la portada, con la captura real del inicio */
+  .telefono {
+    justify-self: center;
+    width: min(340px, 100%);
+    background: #2B2119;
+    border-radius: 40px 40px 0 0;
+    padding: 10px 10px 0;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.55);
+  }
+  .pantalla {
+    width: 100%;
+    height: auto;
+    border-radius: 30px 30px 0 0;
   }
 
   /* ---------------------------------------------------------------
-     Bloque de descarga. Es el objeto principal de la página; junto
-     con "De dónde sale cada dato" es lo único con trato de tarjeta.
+     Secciones
      --------------------------------------------------------------- */
-  .get {
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: var(--shadow);
-    display: grid;
-    gap: 16px;
+  section { padding-block: 80px; }
+  .encabezado { max-width: 40rem; margin-bottom: 36px; }
+  .encabezado h2 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); line-height: 1.2; color: var(--tinta-2); }
+  .encabezado p { margin-top: 12px; color: var(--tinta-3); font-size: 1.05rem; }
+
+  /* Módulos: cada tarjeta copia una ficha de la app,
+     barra café arriba y cuerpo claro abajo. */
+  /* Columnas tipo mosaico: las tarjetas tienen alturas distintas */
+  .modulos { columns: 3 18rem; column-gap: 18px; }
+  .modulo {
+    break-inside: avoid;
+    margin-bottom: 18px;
+    background: var(--papel);
+    border-radius: var(--r-tarjeta);
+    box-shadow: var(--sombra);
+    overflow: hidden;
   }
-  .btn {
+  .modulo-barra {
+    background: var(--cafe);
+    color: var(--crema);
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: var(--accent);
-    color: var(--accent-on);
-    text-decoration: none;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+  .modulo-barra i { font-size: 1.6rem; color: var(--caramelo); }
+  .modulo-barra h3 { font-size: 1.1rem; font-weight: 600; }
+  .modulo-barra .cuenta {
+    margin-left: auto;
+    font-size: .8rem;
     font-weight: 600;
-    font-size: var(--step-1);
-    padding: 15px 22px;
-    border-radius: 10px;
-    transition: transform .12s ease, filter .12s ease;
-  }
-  .btn:hover { filter: brightness(1.08); }
-  .btn:active { transform: translateY(1px); }
-  .btn svg { width: 20px; height: 20px; flex: none; }
-
-  .meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    font-size: var(--step--1);
-    color: var(--ink-3);
-  }
-  .meta b { color: var(--ink-2); font-weight: 500; }
-
-
-  /* ---------------------------------------------------------------
-     Secciones: separadas por regla, no por tarjeta, para que la
-     página se lea como un documento continuo.
-     --------------------------------------------------------------- */
-  section { padding-block: 46px; border-top: 1px solid var(--rule); }
-  .get + section { margin-top: 46px; }
-  .kicker {
-    font-size: .75rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 10px;
-  }
-  section h2 {
-    font-size: var(--step-2);
-    letter-spacing: -.02em;
-    max-width: 24ch;
-  }
-  section .intro {
-    margin-top: 12px;
-    max-width: var(--measure);
-    color: var(--ink-2);
-  }
-
-  /* ---------------------------------------------------------------
-     El índice: el contenido de la app puesto como el índice de un
-     manual, con líneas punteadas y conteos.
-     --------------------------------------------------------------- */
-  .index { margin-top: 30px; display: grid; gap: 26px; }
-  .entry { display: grid; gap: 7px; }
-  .entry-head {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    font-size: var(--step-1);
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .leader {
-    flex: 1 1 auto;
-    min-width: 18px;
-    border-bottom: 1px dotted var(--ink-3);
-    transform: translateY(-.28em);
-    opacity: .5;
-  }
-  .count {
-    flex: none;
-    font-size: var(--step--1);
-    font-weight: 500;
-    color: var(--ink-3);
-    letter-spacing: .02em;
-  }
-  .rows { margin: 4px 0 0; display: grid; font-size: var(--step--1); line-height: 1.6; }
-  .row {
-    display: grid;
-    grid-template-columns: 10.5rem 1fr;
-    gap: 2px 16px;
-    padding-block: 9px;
-    border-top: 1px solid var(--rule-soft);
-  }
-  .row:first-child { border-top: 0; padding-top: 2px; }
-  .row dt { color: var(--ink-2); font-weight: 500; }
-  .row dd { margin: 0; color: var(--ink-3); }
-
-  /* ---------------------------------------------------------------
-     Fuentes
-     --------------------------------------------------------------- */
-  .sources {
-    margin-top: 26px;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 14px;
-    padding: 22px;
-    display: grid;
-  }
-  .src {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 4px 14px;
-    padding-block: 14px;
-    border-top: 1px solid var(--rule-soft);
-  }
-  .src:first-child { padding-top: 0; border-top: 0; }
-  .src:last-child { padding-bottom: 0; }
-  .src .n {
-    grid-row: span 2;
-    font-size: .75rem;
-    color: var(--verify);
-    border: 1px solid var(--verify);
+    background: rgba(246,243,240,.14);
+    padding: 3px 11px;
     border-radius: 999px;
-    width: 24px; height: 24px;
-    display: grid; place-items: center;
-    margin-top: 2px;
+    white-space: nowrap;
   }
-  .src .t { font-weight: 500; }
-  .src .d { font-size: var(--step--1); color: var(--ink-3); line-height: 1.6; }
+  .modulo dl { margin: 0; padding: 6px 20px 14px; font-size: .9rem; }
+  .modulo dl div { padding-block: 10px; border-top: 1px solid var(--linea); }
+  .modulo dl div:first-child { border-top: 0; }
+  .modulo dt { font-weight: 600; color: var(--tinta-2); }
+  .modulo dd { margin: 2px 0 0; color: var(--tinta-3); line-height: 1.55; }
 
-  /* ---------------------------------------------------------------
-     Instalación
-     --------------------------------------------------------------- */
-  .steps {
-    margin-top: 26px;
+  /* Capturas */
+  .capturas-fondo { background: var(--lino); }
+  @media (prefers-color-scheme: dark) { .capturas-fondo { background: #231B14; } }
+  .capturas {
     display: grid;
-    gap: 20px;
-    counter-reset: step;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(200px, 1fr);
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
   }
-  .step {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 4px 16px;
-    align-items: start;
+  .capturas img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-tarjeta);
+    box-shadow: var(--sombra);
+    scroll-snap-align: start;
   }
-  .step::before {
-    counter-increment: step;
-    content: counter(step);
-    grid-row: span 2;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: var(--step--1);
-    color: var(--accent);
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    width: 30px; height: 30px;
-    display: grid; place-items: center;
-    margin-top: 1px;
-  }
-  .step .t { font-weight: 500; }
-  .step .d { font-size: var(--step--1); color: var(--ink-3); line-height: 1.65; max-width: var(--measure); }
 
-  .aside {
+  /* Fuentes */
+  .fuentes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 18px; }
+  .fuente {
+    border: 1px solid var(--linea);
+    border-radius: var(--r-tarjeta);
+    padding: 22px;
+  }
+  .fuente i { font-size: 1.6rem; color: var(--oliva); }
+  .fuente h3 { margin-top: 10px; font-size: 1.05rem; font-weight: 600; color: var(--tinta-2); }
+  .fuente p { margin-top: 4px; font-size: .9rem; color: var(--tinta-3); }
+  .nota {
     margin-top: 24px;
-    border-left: 2px solid var(--rule);
-    padding-left: 16px;
-    font-size: var(--step--1);
-    color: var(--ink-3);
-    max-width: var(--measure);
-  }
-
-  /* ---------------------------------------------------------------
-     Novedades
-     --------------------------------------------------------------- */
-  .releases { margin-top: 26px; display: grid; gap: 34px; }
-  .release-head {
+    max-width: 40rem;
     display: flex;
-    align-items: baseline;
     gap: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--rule);
+    font-size: .9rem;
+    color: var(--tinta-3);
   }
-  .release-v { font-size: var(--step-1); font-weight: 600; letter-spacing: -.01em; }
-  .release-d { font-size: var(--step--1); color: var(--ink-3); margin-left: auto; }
-  .release ul {
-    list-style: none;
-    margin: 0;
-    padding: 16px 0 0;
-    display: grid;
-    gap: 11px;
-  }
-  .release li {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 12px;
-    font-size: var(--step--1);
-    color: var(--ink-2);
-    line-height: 1.65;
-  }
-  .release li::before {
-    content: "";
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--rule);
-    margin-top: .6em;
-  }
+  .nota i { font-size: 1.2rem; color: var(--tinta-2); flex: none; margin-top: 2px; }
 
-  /* ---------------------------------------------------------------
-     Pie
-     --------------------------------------------------------------- */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding-block: 34px 44px;
+  /* Instalación: sí es una secuencia, por eso va numerada */
+  .pasos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 18px; counter-reset: paso; }
+  .pasos li {
+    background: var(--papel);
+    border-radius: var(--r-tarjeta);
+    box-shadow: var(--sombra);
+    padding: 22px;
+    counter-increment: paso;
+  }
+  .pasos li::before {
+    content: counter(paso);
     display: grid;
-    gap: 18px;
+    place-items: center;
+    width: 36px; height: 36px;
+    border-radius: 12px;
+    background: var(--cafe);
+    color: var(--crema);
+    font-weight: 700;
+    margin-bottom: 14px;
   }
-  .disclaim {
-    font-size: var(--step--1);
-    color: var(--ink-3);
-    line-height: 1.65;
-    max-width: var(--measure);
+  .pasos h3 { font-size: 1.05rem; font-weight: 600; color: var(--tinta-2); }
+  .pasos p { margin-top: 6px; font-size: .9rem; color: var(--tinta-3); }
+
+  /* NursClips */
+  .clips {
+    background: var(--papel);
+    border-radius: var(--r-tarjeta);
+    box-shadow: var(--sombra);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px 32px;
+    align-items: center;
   }
-  .footlinks {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 22px;
-    font-size: var(--step--1);
-  }
-  .footlinks a {
-    color: var(--ink-2);
+  .clips h2 { font-size: 1.5rem; color: var(--tinta-2); }
+  .clips p { margin-top: 8px; color: var(--tinta-3); max-width: 38rem; }
+  .redes { display: flex; flex-wrap: wrap; gap: 10px; }
+  .redes a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--linea);
     text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 1px;
+    font-weight: 500;
+    font-size: .9rem;
+    color: var(--tinta-2);
   }
-  .footlinks a:hover { border-color: var(--accent); color: var(--accent); }
+  .redes a:hover { border-color: var(--caramelo); }
+  .redes i { font-size: 1.15rem; }
 
-  @media (max-width: 560px) {
-    :root { --step-4: 2.125rem; --step-2: 1.3125rem; }
-    .hero { padding-block: 34px 32px; }
-    section { padding-block: 36px; }
-    .get + section { margin-top: 36px; }
-    .entry-head { font-size: var(--step-0); }
-    .row { grid-template-columns: 1fr; }
+  /* Novedades */
+  .version { border-top: 1px solid var(--linea); padding-block: 22px; }
+  .version-cabeza { display: flex; align-items: baseline; gap: 12px; }
+  .version-cabeza b { font-size: 1.1rem; color: var(--tinta-2); }
+  .version-cabeza span { margin-left: auto; font-size: .85rem; color: var(--tinta-3); }
+  .version ul { margin: 12px 0 0; padding-left: 1.1rem; display: grid; gap: 8px; font-size: .92rem; color: var(--tinta-3); max-width: 46rem; }
+  .version li::marker { color: var(--caramelo); }
+  details.anteriores { border-top: 1px solid var(--linea); padding-top: 18px; }
+  details.anteriores summary { cursor: pointer; font-weight: 600; color: var(--tinta-2); }
+
+  /* Cierre */
+  .cierre {
+    background: linear-gradient(165deg, var(--cafe) 0%, var(--cafe-hondo) 100%);
+    color: var(--crema);
+    text-align: center;
+  }
+  .cierre h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); }
+  .cierre p { margin: 12px auto 28px; color: var(--arena); max-width: 34ch; }
+
+  footer { padding-block: 40px 48px; font-size: .875rem; color: var(--tinta-3); }
+  footer .wrap { display: grid; gap: 18px; }
+  .pie-marca { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--tinta-2); font-size: 1rem; }
+  .pie-marca img { width: 28px; height: 28px; border-radius: 8px; }
+  .pie-enlaces { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+  .pie-enlaces a { color: var(--tinta-2); text-underline-offset: 3px; }
+  .descargo { max-width: 40rem; line-height: 1.65; }
+
+  @media (max-width: 760px) {
+    .portada .wrap { grid-template-columns: 1fr; gap: 8px; padding-top: 28px; }
+    .marca { margin-bottom: 32px; }
+    .portada-texto { padding-bottom: 40px; }
+    .telefono { width: min(270px, 86%); }
+    section { padding-block: 60px; }
+    .clips { grid-template-columns: 1fr; padding: 24px; }
+    .btn { width: 100%; justify-content: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; }
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
   }
   </style>
 </head>
 <body>
 
-<div class="wrap">
+<div class="aviso">
+  <div class="wrap">
+    <span>¿Ya tienes Nurska y vienes a actualizar?</span>
+    <a class="js-descarga" data-ubicacion="aviso" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">Descargar la última versión</a>
+  </div>
+</div>
 
-  <header class="top">
-    <!-- La cofia del icono de la app -->
-    <svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Nurska">
-      <path d="M5 37c0-15 11-25 25-25 4 0 8 1 11 2l19 10-10 21c-10 6-31 6-41 1-3-2-4-6-4-9z" fill="var(--paper)" stroke="var(--ink-2)" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M41 14l19 10-10 21-12-6z" fill="var(--rule)" stroke="var(--ink-2)" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M5 37c10 6 31 6 41 0l-5 9c-10 5-28 5-35 0-2-2-1-6-1-9z" fill="var(--ink-2)"/>
-      <path d="M20 16h6v7h7v6h-7v7h-6v-7h-7v-6h7z" fill="var(--ink-2)"/>
-    </svg>
-    <span class="wordmark">Nurska</span>
-    <!-- Valor de respaldo. El script del final lo reemplaza con la
-         versión del último Release de GitHub. -->
-    <span class="chip mono" id="chip-version">v1.2.1 · Android</span>
-  </header>
+<header class="portada" id="descargar">
+  <div class="wrap">
+    <div class="portada-texto">
+      <div class="marca">
+        <img src="assets/img/icono-192.png" alt="" width="56" height="56">
+        <span>Nurska</span>
+      </div>
 
-  <main>
+      <h1>Tu referencia clínica de enfermería, siempre a la mano.</h1>
+      <p class="lede">Escalas, fármacos, calculadoras y fichas de consulta rápida. Todo vive dentro del teléfono y cada dato trae su fuente.</p>
 
-    <div class="hero">
-      <p class="eyebrow mono">Referencia clínica de enfermería</p>
-      <h1>Las escalas, los fármacos y los procedimientos que necesitas en el turno.</h1>
-      <p class="lede">Todo el contenido vive dentro del teléfono. Funciona sin señal y sin datos. Cada cifra trae de dónde salió.</p>
-    </div>
+      <ul class="promesas">
+        <li><i class="ph ph-wifi-slash" aria-hidden="true"></i>Funciona sin señal</li>
+        <li><i class="ph ph-user-circle-minus" aria-hidden="true"></i>Sin cuenta</li>
+        <li><i class="ph ph-prohibit" aria-hidden="true"></i>Sin anuncios</li>
+      </ul>
 
-    <div class="get" id="descargar">
-      <a class="btn" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/>
-        </svg>
-        Descargar Nurska
+      <a class="btn btn-claro js-descarga" data-ubicacion="portada" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">
+        <i class="ph ph-download-simple" aria-hidden="true"></i>
+        Descargar gratis
       </a>
-      <div class="meta mono">
-        <span>Versión <b id="meta-version">1.2.1</b></span>
-        <span id="meta-size">Archivo .apk</span>
-        <span>Solo Android</span>
-      </div>
+      <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
+      <p class="descarga-nota" id="nota-version">Versión 1.2.1 para Android</p>
     </div>
 
-    <section id="indice">
-      <p class="kicker mono">Índice</p>
-      <h2>Qué trae dentro</h2>
-      <p class="intro">No es una lista de funciones. Es el contenido, tal como aparece en la app.</p>
+    <div class="telefono">
+      <img class="pantalla" src="assets/img/inicio.webp" width="640" height="1029" alt="Pantalla de inicio de Nurska con los botones de Escalas, Normativas, Fármacos, Calculadoras y Esenciales">
+    </div>
+  </div>
+</header>
 
-      <div class="index">
+<main>
 
-        <div class="entry">
-          <div class="entry-head">
-            <span>Escalas clínicas</span>
-            <span class="leader"></span>
-            <span class="count mono">15</span>
-          </div>
-          <dl class="rows">
-            <div class="row"><dt>Consciencia y sedación</dt><dd>Glasgow, Ramsay, RASS</dd></div>
-            <div class="row"><dt>Valoración de riesgos</dt><dd>Braden, Downton, Maddox</dd></div>
-            <div class="row"><dt>Emergencias y triaje</dt><dd>MEWS, qSOFA, índice de shock</dd></div>
-            <div class="row"><dt>Dolor</dt><dd>EVNA, PAINAD, DN4</dd></div>
-            <div class="row"><dt>Pediátricas y neonatales</dt><dd>APGAR, Silverman-Anderson, FLACC</dd></div>
-          </dl>
-        </div>
-
-        <div class="entry">
-          <div class="entry-head">
-            <span>Farmacología</span>
-            <span class="leader"></span>
-            <span class="count mono">26 fármacos</span>
-          </div>
-          <dl class="rows">
-            <div class="row"><dt>Grupos</dt><dd>Analgésicos, antibióticos, anticoagulantes, antiinflamatorios, antihipertensivos, diuréticos, antieméticos, broncodilatadores, protectores gástricos e insulinas</dd></div>
-            <div class="row"><dt>Cada ficha</dt><dd>Indicaciones, contraindicaciones, vía de administración, farmacocinética, farmacodinamia, efectos adversos, interacciones, administración y precauciones</dd></div>
-            <div class="row"><dt>Alto riesgo</dt><dd>Marca visible en los fármacos que la requieren</dd></div>
-          </dl>
-        </div>
-
-        <div class="entry">
-          <div class="entry-head">
-            <span>Calculadoras</span>
-            <span class="leader"></span>
-            <span class="count mono">5</span>
-          </div>
-          <dl class="rows">
-            <div class="row"><dt>Dosis</dt><dd>Regla de tres, con conversor entre mcg, mg y g</dd></div>
-            <div class="row"><dt>Goteo intravenoso</dt><dd>En horas o minutos</dd></div>
-            <div class="row"><dt>Presión arterial media</dt><dd>PAM</dd></div>
-            <div class="row"><dt>Soluciones glucosadas</dt><dd>Por dilución o mezcla de dos soluciones</dd></div>
-            <div class="row"><dt>Pérdidas insensibles</dt><dd>Para balance de líquidos</dd></div>
-          </dl>
-        </div>
-
-        <div class="entry">
-          <div class="entry-head">
-            <span>Esenciales</span>
-            <span class="leader"></span>
-            <span class="count mono">12 fichas</span>
-          </div>
-          <dl class="rows">
-            <div class="row"><dt>Insumos</dt><dd>Orden de llenado de tubos, calibres de catéter periférico, soluciones intravenosas</dd></div>
-            <div class="row"><dt>Paciente</dt><dd>Regiones abdominales, toma de presión arterial, fístula arteriovenosa</dd></div>
-            <div class="row"><dt>Equipo</dt><dd>Dispositivos de oxígeno, drenajes</dd></div>
-            <div class="row"><dt>Códigos</dt><dd>Código azul, Acciones Esenciales para la Seguridad del Paciente, precauciones de aislamiento, hora dorada en neutropenia febril</dd></div>
-          </dl>
-        </div>
-
-        <div class="entry">
-          <div class="entry-head">
-            <span>Normativas</span>
-            <span class="leader"></span>
-            <span class="count mono">3 NOM</span>
-          </div>
-          <dl class="rows">
-            <div class="row"><dt>NOM-019-SSA3-2013</dt><dd>Práctica de enfermería en el Sistema Nacional de Salud</dd></div>
-            <div class="row"><dt>NOM-022-SSA3-2012</dt><dd>Terapia de infusión intravenosa</dd></div>
-            <div class="row"><dt>NOM-087-SSA1-2002</dt><dd>Residuos peligrosos biológico-infecciosos</dd></div>
-          </dl>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="fuentes">
-      <p class="kicker mono">Procedencia</p>
-      <h2>De dónde sale cada dato</h2>
-      <p class="intro">Ningún contenido clínico se publica sin fuente, ni siquiera con aviso. Este es el orden con el que se busca.</p>
-
-      <div class="sources">
-        <div class="src">
-          <span class="n mono">1</span>
-          <span class="t">Normas Oficiales Mexicanas</span>
-          <span class="d">Publicadas en el Diario Oficial de la Federación.</span>
-        </div>
-        <div class="src">
-          <span class="n mono">2</span>
-          <span class="t">Manuales del Consejo de Salubridad General</span>
-          <span class="d">Y guías de práctica clínica de instituciones del sector.</span>
-        </div>
-        <div class="src">
-          <span class="n mono">3</span>
-          <span class="t">Revistas mexicanas indexadas</span>
-          <span class="d">Medicina Crítica, Neumología y Cirugía de Tórax, Revista Mexicana de Pediatría, entre otras.</span>
-        </div>
+  <section id="contenido">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2>Lo que trae dentro</h2>
+        <p>El contenido tal como aparece en la app, pensado para consultarse en segundos durante el turno.</p>
       </div>
 
-      <p class="aside">Cada ficha cierra con su bibliografía completa y con liga directa al documento. Si una fuente no se pudo verificar, el dato no se publica.</p>
-    </section>
+      <div class="modulos">
 
-    <section id="instalar">
-      <p class="kicker mono">Instalación</p>
-      <h2>Cómo se instala</h2>
-      <p class="intro">Nurska se instala desde este archivo, no desde una tienda. Android va a pedirte permiso una vez.</p>
+        <article class="modulo">
+          <div class="modulo-barra">
+            <i class="ph-fill ph-chart-bar-horizontal" aria-hidden="true"></i>
+            <h3>Escalas clínicas</h3>
+            <span class="cuenta">15</span>
+          </div>
+          <dl>
+            <div><dt>Consciencia y sedación</dt><dd>Glasgow, Ramsay, RASS</dd></div>
+            <div><dt>Valoración de riesgos</dt><dd>Braden, Downton, Maddox</dd></div>
+            <div><dt>Emergencias y triaje</dt><dd>MEWS, qSOFA, índice de shock</dd></div>
+            <div><dt>Dolor</dt><dd>EVNA, PAINAD, DN4</dd></div>
+            <div><dt>Pediátricas y neonatales</dt><dd>APGAR, Silverman-Anderson, FLACC</dd></div>
+          </dl>
+        </article>
 
-      <div class="steps">
-        <div class="step">
-          <span class="t">Descarga el archivo</span>
-          <span class="d">El botón de arriba baja <span class="mono">nurska.apk</span>. En el celular queda en la carpeta de Descargas.</span>
+        <article class="modulo">
+          <div class="modulo-barra">
+            <i class="ph-fill ph-syringe" aria-hidden="true"></i>
+            <h3>Farmacología</h3>
+            <span class="cuenta">26 fármacos</span>
+          </div>
+          <dl>
+            <div><dt>Grupos</dt><dd>Analgésicos, antibióticos, anticoagulantes, antiinflamatorios, antihipertensivos, diuréticos, antieméticos, broncodilatadores, protectores gástricos e insulinas</dd></div>
+            <div><dt>Cada ficha</dt><dd>Indicaciones, contraindicaciones, vía de administración, farmacocinética, farmacodinamia, efectos adversos, interacciones, administración y precauciones</dd></div>
+            <div><dt>Alto riesgo</dt><dd>Marca visible en los fármacos que la requieren</dd></div>
+          </dl>
+        </article>
+
+        <article class="modulo">
+          <div class="modulo-barra">
+            <i class="ph-fill ph-calculator" aria-hidden="true"></i>
+            <h3>Calculadoras</h3>
+            <span class="cuenta">5</span>
+          </div>
+          <dl>
+            <div><dt>Dosis</dt><dd>Regla de tres, con conversor entre mcg, mg y g</dd></div>
+            <div><dt>Goteo intravenoso</dt><dd>En horas o minutos</dd></div>
+            <div><dt>Presión arterial media</dt><dd>PAM a partir de sistólica y diastólica</dd></div>
+            <div><dt>Soluciones glucosadas</dt><dd>Por dilución o mezcla de dos soluciones</dd></div>
+            <div><dt>Pérdidas insensibles</dt><dd>Para el balance de líquidos</dd></div>
+          </dl>
+        </article>
+
+        <article class="modulo">
+          <div class="modulo-barra">
+            <i class="ph-fill ph-chalkboard-teacher" aria-hidden="true"></i>
+            <h3>Esenciales</h3>
+            <span class="cuenta">12 fichas</span>
+          </div>
+          <dl>
+            <div><dt>Insumos</dt><dd>Orden de llenado de tubos, calibres de catéter periférico, soluciones intravenosas</dd></div>
+            <div><dt>Paciente</dt><dd>Regiones abdominales, toma de presión arterial, fístula arteriovenosa</dd></div>
+            <div><dt>Equipo</dt><dd>Dispositivos de oxígeno, drenajes</dd></div>
+            <div><dt>Códigos</dt><dd>Código azul, Acciones Esenciales para la Seguridad del Paciente, precauciones de aislamiento, hora dorada en neutropenia febril</dd></div>
+          </dl>
+        </article>
+
+        <article class="modulo">
+          <div class="modulo-barra">
+            <i class="ph-fill ph-book-open" aria-hidden="true"></i>
+            <h3>Normativas</h3>
+            <span class="cuenta">3 NOM</span>
+          </div>
+          <dl>
+            <div><dt>NOM-019-SSA3-2013</dt><dd>Práctica de enfermería en el Sistema Nacional de Salud</dd></div>
+            <div><dt>NOM-022-SSA3-2012</dt><dd>Terapia de infusión intravenosa</dd></div>
+            <div><dt>NOM-087-ECOL-SSA1-2002</dt><dd>Residuos peligrosos biológico-infecciosos</dd></div>
+          </dl>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="capturas-fondo" aria-labelledby="capturas-titulo">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2 id="capturas-titulo">Así se ve</h2>
+        <p>Colores cálidos, letra grande y botones pensados para usarse con una mano.</p>
+      </div>
+      <div class="capturas">
+        <img src="assets/img/escalas.webp" alt="Escala de riesgo de caídas con el resultado de 3 puntos, riesgo alto" width="540" height="960" loading="lazy">
+        <img src="assets/img/farmaco.webp" alt="Ficha de furosemida con indicaciones, vía de administración y contraindicaciones" width="540" height="960" loading="lazy">
+        <img src="assets/img/calculadora.webp" alt="Calculadora de dosis con el resultado en mililitros a administrar" width="540" height="960" loading="lazy">
+        <img src="assets/img/esenciales.webp" alt="Ficha esencial de cuidados de la fístula arteriovenosa" width="540" height="960" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="fuentes">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2>De dónde sale cada dato</h2>
+        <p>Ningún contenido clínico se publica sin fuente. Este es el orden en que se buscan.</p>
+      </div>
+      <div class="fuentes">
+        <div class="fuente">
+          <i class="ph-fill ph-seal-check" aria-hidden="true"></i>
+          <h3>Normas Oficiales Mexicanas</h3>
+          <p>Vigentes y publicadas en el Diario Oficial de la Federación.</p>
         </div>
-        <div class="step">
-          <span class="t">Permite la instalación</span>
-          <span class="d">Android va a avisarte que la app viene de una fuente desconocida. Es el aviso normal para cualquier archivo que no venga de Play. Toca <em>Configuración</em> y activa el permiso para tu navegador o tu gestor de archivos.</span>
+        <div class="fuente">
+          <i class="ph-fill ph-seal-check" aria-hidden="true"></i>
+          <h3>Guías y manuales oficiales</h3>
+          <p>Guías de práctica clínica de IMSS, ISSSTE y SSA, y manuales del Consejo de Salubridad General.</p>
         </div>
-        <div class="step">
-          <span class="t">Abre el archivo</span>
-          <span class="d">Confirma la instalación. Listo. No pide correo, contraseña ni permisos del teléfono.</span>
+        <div class="fuente">
+          <i class="ph-fill ph-seal-check" aria-hidden="true"></i>
+          <h3>Revistas indexadas</h3>
+          <p>Con revisión por pares, preferentemente mexicanas.</p>
         </div>
       </div>
+      <p class="nota"><i class="ph ph-books" aria-hidden="true"></i><span>Cada ficha cierra con su bibliografía completa. Si una fuente no se pudo verificar, el dato no se publica.</span></p>
+    </div>
+  </section>
 
-      <p class="aside">Para actualizar no hace falta volver aquí: la app avisa sola cuando hay versión nueva, y se instala encima sin perder nada.</p>
-    </section>
+  <section id="instalar" class="capturas-fondo">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2>Cómo se instala</h2>
+        <p>Nurska se descarga desde esta página, no desde una tienda. Toma un minuto.</p>
+      </div>
+      <ol class="pasos">
+        <li>
+          <h3>Descarga el archivo</h3>
+          <p>El botón baja <b>nurska.apk</b> a la carpeta de Descargas de tu celular.</p>
+        </li>
+        <li>
+          <h3>Permite la instalación</h3>
+          <p>Android avisa que la app viene de una fuente desconocida, como con cualquier archivo que no sale de Play. Activa el permiso para tu navegador o tu gestor de archivos.</p>
+        </li>
+        <li>
+          <h3>Abre e instala</h3>
+          <p>Confirma y listo. No pide correo, contraseña ni permisos del teléfono.</p>
+        </li>
+      </ol>
+      <p class="nota"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span>Para actualizar no hace falta volver aquí: la app avisa cuando hay versión nueva y se instala encima sin perder nada.</span></p>
+    </div>
+  </section>
 
-    <section id="novedades">
-      <p class="kicker mono">Novedades</p>
-      <h2>Qué cambió</h2>
-
-      <div class="releases">
-
-        <div class="release">
-          <div class="release-head">
-            <span class="release-v mono">1.2.1</span>
-            <span class="release-d mono">30 ago 2026</span>
-          </div>
-          <ul>
-            <li>Nueva pantalla de actualizaciones en el menú, con verificación manual y las novedades de la versión instalada.</li>
-            <li>La calculadora de regla de tres acepta mcg, mg y g también en la presentación del fármaco, y suma una pestaña de conversor entre esas unidades.</li>
-            <li>Los campos numéricos de las calculadoras muestran una indicación que ya no desaparece al escribir.</li>
-            <li>Los botones de categoría, el tablero de inicio y los resultados de las escalas dejan de quedar debajo de la barra de navegación del sistema.</li>
-            <li>El botón atrás minimiza la app al primer intento y ya no deja la pantalla en negro.</li>
-            <li>Corrección en la farmacodinamia de ondansetrón: describe el mecanismo de acción sin atarlo a quimioterapia ni radioterapia.</li>
-          </ul>
+  <section id="nursclips">
+    <div class="wrap">
+      <div class="clips">
+        <div>
+          <h2>NursClips</h2>
+          <p>Farmacología animada para enfermería: cómo actúa cada fármaco, explicado en menos de dos minutos.</p>
         </div>
+        <div class="redes">
+          <a href="https://www.tiktok.com/@nursclips" rel="noopener"><i class="ph ph-tiktok-logo" aria-hidden="true"></i>TikTok</a>
+          <a href="https://www.instagram.com/nursclips/" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i>Instagram</a>
+          <a href="https://www.youtube.com/@nursclips" rel="noopener"><i class="ph ph-youtube-logo" aria-hidden="true"></i>YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="release">
-          <div class="release-head">
-            <span class="release-v mono">1.2.0</span>
-            <span class="release-d mono">29 ago 2026</span>
-          </div>
+  <section id="novedades">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2>Novedades</h2>
+        <p>Cada versión mejora con lo que reportan quienes la usan.</p>
+      </div>
+
+      <div class="version">
+        <div class="version-cabeza"><b>Versión 1.2.1</b><span>30 de agosto de 2026</span></div>
+        <ul>
+          <li>Nueva pantalla de actualizaciones en el menú, con verificación manual y las novedades de la versión instalada.</li>
+          <li>La calculadora de regla de tres acepta mcg, mg y g también en la presentación del fármaco, y suma una pestaña de conversor entre esas unidades.</li>
+          <li>Los campos numéricos de las calculadoras muestran una indicación que ya no desaparece al escribir.</li>
+          <li>Los botones de categoría, el tablero de inicio y los resultados de las escalas dejan de quedar debajo de la barra de navegación del sistema.</li>
+          <li>El botón atrás minimiza la app al primer intento y ya no deja la pantalla en negro.</li>
+          <li>Corrección en la farmacodinamia de ondansetrón: describe el mecanismo de acción sin atarlo a quimioterapia ni radioterapia.</li>
+        </ul>
+      </div>
+
+      <details class="anteriores">
+        <summary>Versiones anteriores</summary>
+        <div class="version">
+          <div class="version-cabeza"><b>Versión 1.2.0</b><span>29 de agosto de 2026</span></div>
           <ul>
             <li>Cinco medicamentos nuevos: omeprazol, pantoprazol, metoclopramida, ondansetrón y salbutamol.</li>
             <li>La calculadora de dosis incluye un conversor de unidades y permite elegir mcg, mg o g en ambos campos.</li>
             <li>El goteo IV acepta minutos además de horas.</li>
             <li>Aviso cuando el resultado de una dosis es sospechosamente pequeño, para revisar las unidades seleccionadas.</li>
             <li>Nuevo diseño en las fichas de medicamentos, escalas y calculadoras, con íconos por sección.</li>
-            <li>Corregido el comportamiento del botón atrás, que dejaba la app en pantalla negra.</li>
           </ul>
         </div>
+        <div class="version">
+          <div class="version-cabeza"><b>Versión 1.1.0</b></div>
+          <ul><li>Nuevo módulo Esenciales: fichas de referencia rápida sobre insumos, paciente, equipo y códigos.</li></ul>
+        </div>
+        <div class="version">
+          <div class="version-cabeza"><b>Versión 1.0.0</b></div>
+          <ul><li>Primera versión de Nurska: escalas clínicas, calculadoras, farmacología y normas oficiales, todo sin conexión.</li></ul>
+        </div>
+      </details>
+    </div>
+  </section>
 
-      </div>
-    </section>
+  <section class="cierre">
+    <div class="wrap">
+      <h2>Lleva Nurska a tu turno</h2>
+      <p>Gratis, sin registro y sin conexión. Hecho por enfermería, para enfermería.</p>
+      <a class="btn btn-claro js-descarga" data-ubicacion="cierre" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">
+        <i class="ph ph-download-simple" aria-hidden="true"></i>
+        Descargar gratis
+      </a>
+    </div>
+  </section>
 
+</main>
 
-  </main>
-
-  <footer>
-    <p class="disclaim">Nurska es una obra de consulta. No sustituye el juicio clínico, la valoración del paciente ni el protocolo de tu institución.</p>
-    <div class="footlinks">
+<footer>
+  <div class="wrap">
+    <div class="pie-marca"><img src="assets/img/icono-192.png" alt="" width="28" height="28">Nurska</div>
+    <p class="descargo">Nurska es una obra de consulta. No sustituye el juicio clínico, la valoración del paciente ni el protocolo de tu institución.</p>
+    <div class="pie-enlaces">
       <a href="https://farkasokovo.github.io/nurska-privacidad/">Aviso de privacidad</a>
       <a href="mailto:nurska.app@gmail.com">nurska.app@gmail.com</a>
+      <a href="#nursclips">NursClips</a>
     </div>
-  </footer>
-
-</div>
+  </div>
+</footer>
 
 <script>
-/* -----------------------------------------------------------------
-   Lee la versión y el peso del último Release de GitHub para no
-   editar este archivo en cada publicación. Si la petición falla
-   (sin red, límite de la API), la página se queda con los valores
-   escritos arriba, que deben coincidir con la versión publicada.
-   ----------------------------------------------------------------- */
+/* Cuenta cada clic de descarga en Google Analytics, con el lugar de la
+   página desde donde se hizo (aviso, portada o cierre). */
+document.querySelectorAll(".js-descarga").forEach(function (a) {
+  a.addEventListener("click", function () {
+    if (typeof gtag === "function") {
+      gtag("event", "descarga_apk", { ubicacion: a.dataset.ubicacion || "otro" });
+    }
+  });
+});
+
+/* Lee la versión y el peso del último Release de GitHub para no editar
+   este archivo en cada publicación. Si falla (sin red, límite de la API),
+   se queda el texto escrito arriba, que debe coincidir con lo publicado. */
 (function () {
-  var API = "https://api.github.com/repos/farkasokovo/nurska-app/releases/latest";
-
-  function mb(bytes) {
-    if (!bytes) return null;
-    return (bytes / 1048576).toFixed(1).replace(".", ",") + " MB";
-  }
-
-  fetch(API, { headers: { Accept: "application/vnd.github+json" } })
+  fetch("https://api.github.com/repos/farkasokovo/nurska-app/releases/latest", {
+    headers: { Accept: "application/vnd.github+json" }
+  })
     .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
     .then(function (data) {
       var tag = (data.tag_name || "").replace(/^v/, "");
       if (!tag) return;
-
-      var chip = document.getElementById("chip-version");
-      var ver = document.getElementById("meta-version");
-      var size = document.getElementById("meta-size");
-
-      if (chip) chip.textContent = "v" + tag + " · Android";
-      if (ver) ver.textContent = tag;
-
-      var apk = (data.assets || []).filter(function (a) {
-        return /\.apk$/i.test(a.name || "");
-      })[0];
-      if (apk && size) {
-        var peso = mb(apk.size);
-        if (peso) size.textContent = "Archivo .apk · " + peso;
-      }
+      var apk = (data.assets || []).filter(function (a) { return /\.apk$/i.test(a.name || ""); })[0];
+      var peso = apk && apk.size ? ", " + Math.round(apk.size / 1048576) + " MB" : "";
+      document.getElementById("nota-version").textContent = "Versión " + tag + " para Android" + peso;
     })
-    .catch(function () { /* se queda con los valores del HTML */ });
+    .catch(function () {});
 })();
 </script>
 
