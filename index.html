@@ -27,14 +27,16 @@
   <link rel="icon" type="image/png" href="assets/img/icono-192.png">
   <link rel="apple-touch-icon" href="assets/img/icono-192.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
   <!-- Phosphor: el mismo set de íconos que usa la app -->
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
 
   <style>
+  /* Misma fuente que la app (assets/fonts/ de Nurska), servida desde el propio sitio. */
+  @font-face { font-family: "Delight"; font-weight: 400; font-style: normal; font-display: swap; src: url("assets/fonts/Delight-Regular.otf") format("opentype"); }
+  @font-face { font-family: "Delight"; font-weight: 500; font-style: normal; font-display: swap; src: url("assets/fonts/Delight-Medium.otf") format("opentype"); }
+  @font-face { font-family: "Delight"; font-weight: 600; font-style: normal; font-display: swap; src: url("assets/fonts/Delight-SemiBold.otf") format("opentype"); }
+  @font-face { font-family: "Delight"; font-weight: 700; font-style: normal; font-display: swap; src: url("assets/fonts/Delight-Bold.otf") format("opentype"); }
   /* ---------------------------------------------------------------
      Paleta de la app (lib/theme/app_theme.dart). El sitio y la app
      deben leerse como la misma cosa.
@@ -83,7 +85,7 @@
     margin: 0;
     background: var(--fondo);
     color: var(--tinta);
-    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: "Delight", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: 1rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -107,7 +109,7 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    font: 600 1.125rem/1 "Poppins", sans-serif;
+    font: 600 1.125rem/1 "Delight", sans-serif;
     text-decoration: none;
     padding: 18px 30px;
     border-radius: var(--r-grande);
