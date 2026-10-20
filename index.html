@@ -310,35 +310,6 @@
   .pasos h3 { font-size: 1.05rem; font-weight: 600; color: var(--tinta-2); }
   .pasos p { margin-top: 6px; font-size: .9rem; color: var(--tinta-3); }
 
-  /* NursClips */
-  .clips {
-    background: var(--papel);
-    border-radius: var(--r-tarjeta);
-    box-shadow: var(--sombra);
-    padding: 32px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 20px 32px;
-    align-items: center;
-  }
-  .clips h2 { font-size: 1.5rem; color: var(--tinta-2); }
-  .clips p { margin-top: 8px; color: var(--tinta-3); max-width: 38rem; }
-  .redes { display: flex; flex-wrap: wrap; gap: 10px; }
-  .redes a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 999px;
-    border: 1px solid var(--linea);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: .9rem;
-    color: var(--tinta-2);
-  }
-  .redes a:hover { border-color: var(--caramelo); }
-  .redes i { font-size: 1.15rem; }
-
   /* Novedades */
   .version { border-top: 1px solid var(--linea); padding-block: 22px; }
   .version-cabeza { display: flex; align-items: baseline; gap: 12px; }
@@ -372,7 +343,6 @@
     .portada-texto { padding-bottom: 40px; }
     .telefono { width: min(270px, 86%); }
     section { padding-block: 60px; }
-    .clips { grid-template-columns: 1fr; padding: 24px; }
     .btn { width: 100%; justify-content: center; }
   }
 
@@ -573,22 +543,6 @@
     </div>
   </section>
 
-  <section id="nursclips">
-    <div class="wrap">
-      <div class="clips">
-        <div>
-          <h2>NursClips</h2>
-          <p>Farmacología animada para enfermería: cómo actúa cada fármaco, explicado en menos de dos minutos.</p>
-        </div>
-        <div class="redes">
-          <a href="https://www.tiktok.com/@nursclips" rel="noopener"><i class="ph ph-tiktok-logo" aria-hidden="true"></i>TikTok</a>
-          <a href="https://www.instagram.com/nursclips/" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i>Instagram</a>
-          <a href="https://www.youtube.com/@nursclips" rel="noopener"><i class="ph ph-youtube-logo" aria-hidden="true"></i>YouTube</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="novedades">
     <div class="wrap">
       <div class="encabezado">
@@ -652,7 +606,6 @@
     <div class="pie-enlaces">
       <a href="https://farkasokovo.github.io/nurska-privacidad/">Aviso de privacidad</a>
       <a href="mailto:nurska.app@gmail.com">nurska.app@gmail.com</a>
-      <a href="#nursclips">NursClips</a>
     </div>
   </div>
 </footer>
