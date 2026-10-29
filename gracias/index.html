@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#624933">
+<title>Gracias | Nurska</title>
+<meta property="og:title" content="Gracias por apoyar a Nurska">
+<link rel="icon" type="image/png" href="../assets/img/icono-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+:root{color-scheme:light;--cafe:#624933;--cafe-hondo:#4E3A28;--cocoa:#96775B;--caramelo:#CBA786;--crema:#F6F3F0;--lino:#EFE9E4;--arena:#DFD3C9;
+--fondo:#F6F3F0;--papel:#FFFFFF;--tinta:#2F2318;--tinta-3:#7A6453;--linea:#DFD3C9;--corazon:#B8545C;
+--sombra:0 1px 2px rgba(47,35,24,.06),0 12px 28px -16px rgba(47,35,24,.35)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--fondo:#1C1610;--papel:#271F18;--tinta:#EFE9E4;--tinta-3:#A9937F;--linea:#3B2F25;--corazon:#CF6E75;--sombra:0 1px 2px rgba(0,0,0,.4),0 14px 30px -16px rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{color-scheme:dark;--fondo:#1C1610;--papel:#271F18;--tinta:#EFE9E4;--tinta-3:#A9937F;--linea:#3B2F25;--corazon:#CF6E75;--sombra:0 1px 2px rgba(0,0,0,.4),0 14px 30px -16px rgba(0,0,0,.7)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;
+padding-block:28px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,p{margin:0}
+.col{max-width:30rem;margin-inline:auto;display:grid;gap:22px}
+.marcas{display:flex;align-items:center;justify-content:center;gap:16px}
+.marcas img{height:56px;width:56px;object-fit:contain}
+.marcas .nurska{border-radius:14px;box-shadow:var(--sombra)}
+.marcas .x{color:var(--tinta-3);font-weight:600;font-size:1.25rem}
+.tarjeta{background:var(--papel);border:1px solid var(--linea);border-radius:30px;box-shadow:var(--sombra);overflow:hidden}
+.tarjeta img.arte{width:100%;aspect-ratio:4/5;height:auto;object-fit:cover}
+.texto{padding:28px 24px 30px;text-align:center;display:grid;gap:14px}
+h1{font-size:1.6rem;line-height:1.25;letter-spacing:-.02em;text-wrap:balance;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+h1 svg{width:1.5rem;height:1.5rem;fill:var(--corazon);flex:none}
+.texto p{color:var(--tinta-3);font-size:.97rem}
+.firma{color:var(--tinta);font-weight:600}
+.acciones{display:grid;gap:10px;margin-top:6px}
+.btn{display:block;text-decoration:none;font-weight:600;font-size:1rem;padding:15px 22px;border-radius:30px;border:2px solid var(--cafe);text-align:center}
+.btn.p{background:var(--cafe);color:var(--crema)}
+.btn.s{color:var(--cafe)}
+:root:not([data-theme="light"]) .btn.s{color:var(--caramelo)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .btn.s{color:var(--cafe)}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{border-color:var(--cocoa)}:root:not([data-theme="light"]) .btn.p{background:var(--cocoa);color:#fff}}
+.btn:focus-visible{outline:3px solid var(--caramelo);outline-offset:3px}
+.nota{text-align:center;color:var(--tinta-3);font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="col">
+  <div class="marcas">
+    <img class="nurska" src="../assets/img/icono-192.png" alt="Logo de Nurska">
+    <span class="x" aria-hidden="true">×</span>
+    <img src="../assets/img/nursclips-logo.svg" alt="Logo de NursClips">
+  </div>
+  <main class="tarjeta">
+    <img class="arte" src="../assets/img/gracias-nursclips.webp" alt="El linfocito T de NursClips con cofia de enfermera abraza un corazón y dice gracias">
+    <div class="texto">
+      <h1><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M240 94c0 70-103.8 126.8-108.2 129.2a8 8 0 0 1-7.6 0C119.8 220.8 16 164 16 94a62.07 62.07 0 0 1 62-62c20.65 0 38.73 8.88 50 23.89C139.27 40.88 157.35 32 178 32a62.07 62.07 0 0 1 62 62Z"/></svg>Gracias por apoyar a Nurska</h1>
+      <p>Tu aportación ayuda a que la app siga siendo gratis, sin internet y hecha con mucho cariño para quienes cuidan a los pacientes.</p>
+      <p>Cada fármaco nuevo, cada escala y cada actualización se hacen con ese apoyo.</p>
+      <p class="firma">Diego<br>Nurska y NursClips</p>
+      <div class="acciones">
+        <a class="btn p" href="https://farkasokovo.github.io/nurska-app/">Volver a Nurska</a>
+        <a class="btn s" href="https://www.facebook.com/share/1KeH8doGxa/">NursClips en Facebook</a>
+        <a class="btn s" href="https://www.tiktok.com/@nursclips">NursClips en TikTok</a>
+        <a class="btn s" href="https://www.instagram.com/nursclips">NursClips en Instagram</a>
+      </div>
+    </div>
+  </main>
+  <p class="nota">¿Llegaste sin haber donado? También eres bienvenido.</p>
+</div>
+</body>
+</html>
