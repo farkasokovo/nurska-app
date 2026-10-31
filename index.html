@@ -119,6 +119,8 @@
   .btn:hover { filter: brightness(1.06); }
   .btn:active { transform: translateY(1px); }
   .btn-claro { background: var(--crema); color: var(--cafe); box-shadow: 0 10px 24px -10px rgba(0,0,0,.45); }
+  .btn-oscuro { background: var(--cafe); color: var(--crema); box-shadow: 0 10px 24px -10px rgba(0,0,0,.35); }
+  .apoya .nota { margin-top: 14px; }
 
   /* ---------------------------------------------------------------
      Aviso para quien viene a actualizar
@@ -369,8 +371,8 @@
         <span>Nurska</span>
       </div>
 
-      <h1>Tu referencia clínica de enfermería, siempre a la mano.</h1>
-      <p class="lede">Escalas, fármacos, calculadoras y fichas de consulta rápida. Todo vive dentro del teléfono y cada dato trae su fuente.</p>
+      <h1>Consulta rápida para tu turno.</h1>
+      <p class="lede">Nurska es una app gratuita de referencia clínica para enfermería: fármacos, escalas, calculadoras, normas oficiales y fichas esenciales, con fuente en cada dato y sin necesidad de internet. Es el proyecto de un estudiante de enfermería.</p>
 
       <ul class="promesas">
         <li><i class="ph ph-wifi-slash" aria-hidden="true"></i>Funciona sin señal</li>
@@ -383,7 +385,7 @@
         Descargar gratis
       </a>
       <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
-      <p class="descarga-nota" id="nota-version">Versión 1.4.0 para Android</p>
+      <p class="descarga-nota" id="nota-version">Versión 1.5.0 para Android</p>
     </div>
 
     <div class="telefono">
@@ -423,12 +425,13 @@
           <div class="modulo-barra">
             <i class="ph-fill ph-syringe" aria-hidden="true"></i>
             <h3>Farmacología</h3>
-            <span class="cuenta">42 fármacos</span>
+            <span class="cuenta">52 fármacos</span>
           </div>
           <dl>
-            <div><dt>Grupos</dt><dd>Analgésicos, anestésicos, antibióticos, anticoagulantes, antidepresivos, antieméticos, antihipertensivos, antiinflamatorios, broncodilatadores, diuréticos, electrolitos, hemostáticos, insulinas, protectores gástricos y vasodilatadores</dd></div>
+            <div><dt>Grupos</dt><dd>Analgésicos, anestésicos, antiarrítmicos, antibióticos, anticoagulantes, antidepresivos, antieméticos, antihipertensivos, antiinflamatorios, broncodilatadores, diuréticos, electrolitos, hemostáticos, insulinas, opioides, protectores gástricos, vasodilatadores y vasopresores</dd></div>
             <div><dt>Cada ficha</dt><dd>Indicaciones, contraindicaciones, vía de administración, farmacocinética, farmacodinamia, efectos adversos, interacciones, administración y precauciones</dd></div>
             <div><dt>Alto riesgo</dt><dd>Marca visible en los fármacos que la requieren</dd></div>
+            <div><dt>NursClips</dt><dd>Pestaña con lo esencial del video en los fármacos que tienen uno</dd></div>
           </dl>
         </article>
 
@@ -465,12 +468,13 @@
           <div class="modulo-barra">
             <i class="ph-fill ph-book-open" aria-hidden="true"></i>
             <h3>Normativas</h3>
-            <span class="cuenta">3 NOM</span>
+            <span class="cuenta">9 NOM</span>
           </div>
           <dl>
-            <div><dt>NOM-019-SSA3-2013</dt><dd>Práctica de enfermería en el Sistema Nacional de Salud</dd></div>
-            <div><dt>NOM-022-SSA3-2012</dt><dd>Terapia de infusión intravenosa</dd></div>
-            <div><dt>NOM-087-ECOL-SSA1-2002</dt><dd>Residuos peligrosos biológico-infecciosos</dd></div>
+            <div><dt>Práctica y registros</dt><dd>NOM-019 (práctica de enfermería), NOM-004 (expediente clínico) y NOM-022 (terapia de infusión intravenosa)</dd></div>
+            <div><dt>Infecciones</dt><dd>NOM-045 (infecciones nosocomiales) y NOM-006 (tuberculosis)</dd></div>
+            <div><dt>Servicios</dt><dd>NOM-027 (urgencias), NOM-025 (cuidados intensivos) y NOM-007 (embarazo, parto, puerperio y recién nacido)</dd></div>
+            <div><dt>Residuos</dt><dd>NOM-087 (residuos peligrosos biológico-infecciosos)</dd></div>
           </dl>
         </article>
 
@@ -486,7 +490,8 @@
       </div>
       <div class="capturas">
         <img src="assets/img/escalas.webp" alt="Escala de riesgo de caídas con el resultado de 3 puntos, riesgo alto" width="540" height="960" loading="lazy">
-        <img src="assets/img/farmaco.webp" alt="Ficha de furosemida con indicaciones, vía de administración y contraindicaciones" width="540" height="960" loading="lazy">
+        <img src="assets/img/farmaco.webp" alt="Ficha de un fármaco con indicaciones, vía de administración y contraindicaciones" width="540" height="960" loading="lazy">
+        <img src="assets/img/nursclips.webp" alt="Pestaña de NursClips dentro de la ficha de un fármaco" width="540" height="960" loading="lazy">
         <img src="assets/img/calculadora.webp" alt="Calculadora de dosis con el resultado en mililitros a administrar" width="540" height="960" loading="lazy">
         <img src="assets/img/esenciales.webp" alt="Ficha esencial de cuidados de la fístula arteriovenosa" width="540" height="960" loading="lazy">
       </div>
@@ -552,21 +557,34 @@
       </div>
 
       <div class="version">
-        <div class="version-cabeza"><b>Versión 1.4.0</b><span>Octubre de 2026</span></div>
+        <div class="version-cabeza"><b>Versión 1.5.0</b><span>31 de octubre de 2026</span></div>
         <ul>
-          <li>Modo oscuro: la app sigue el tema del teléfono, y en el menú se puede elegir claro u oscuro.</li>
-          <li>Farmacología pasa de 26 a 42 fármacos, con cinco categorías nuevas: electrolitos, antidepresivos, hemostáticos, anestésicos y vasodilatadores.</li>
-          <li>Las categorías de Farmacología aparecen en orden alfabético, y cada ficha muestra la vía de administración como una etiqueta.</li>
-          <li>Nueva escala de signos vitales del adulto, con la presión arterial clasificada según la NOM-030 y fichas de valores de laboratorio.</li>
-          <li>Los signos vitales pediátricos suman una pestaña de Información con las tablas de referencia por edad.</li>
-          <li>Cuatro fichas nuevas en Esenciales: modos ventilatorios básicos, ventiladores mecánicos, catéter venoso central y catéter PICC.</li>
-          <li>La ficha de dispositivos de oxígeno se divide en bajo y alto flujo, con el sistema Airvo 2 y la FiO2 en porcentaje; las fichas de oxígeno y ventilación abren con un glosario plegable.</li>
-          <li>Corregido el separador decimal en las calculadoras: escribir una coma ya no borra el decimal.</li>
+          <li>Bienvenida para quien instala Nurska por primera vez: qué trae, cómo se usa, contacto y apoyo voluntario.</li>
+          <li>La app inicia en tema claro y recuerda el tema que se elija en el menú.</li>
+          <li>Farmacología pasa de 42 a 52 fármacos, con tres categorías nuevas (antiarrítmicos, opioides y vasopresores) y rifampicina en antibióticos.</li>
+          <li>Las fichas de los fármacos que aparecen en NursClips suman una pestaña con lo esencial del video.</li>
+          <li>Normativas pasa de 3 a 9 normas oficiales, con cuatro categorías nuevas: expediente clínico, infecciones, urgencias y cuidados intensivos, y obstetricia y neonatología.</li>
+          <li>Acerca de suma los enlaces de NursClips y un botón de donación voluntaria.</li>
+          <li>Corrección de errores.</li>
         </ul>
       </div>
 
       <details class="anteriores">
         <summary>Versiones anteriores</summary>
+        <div class="version">
+          <div class="version-cabeza"><b>Versión 1.4.0</b><span>Octubre de 2026</span></div>
+          <ul>
+            <li>Modo oscuro: la app sigue el tema del teléfono, y en el menú se puede elegir claro u oscuro.</li>
+            <li>Farmacología pasa de 26 a 42 fármacos, con cinco categorías nuevas: electrolitos, antidepresivos, hemostáticos, anestésicos y vasodilatadores.</li>
+            <li>Las categorías de Farmacología aparecen en orden alfabético, y cada ficha muestra la vía de administración como una etiqueta.</li>
+            <li>Nueva escala de signos vitales del adulto, con la presión arterial clasificada según la NOM-030 y fichas de valores de laboratorio.</li>
+            <li>Los signos vitales pediátricos suman una pestaña de Información con las tablas de referencia por edad.</li>
+            <li>Cuatro fichas nuevas en Esenciales: modos ventilatorios básicos, ventiladores mecánicos, catéter venoso central y catéter PICC.</li>
+            <li>La ficha de dispositivos de oxígeno se divide en bajo y alto flujo, con el sistema Airvo 2 y la FiO2 en porcentaje; las fichas de oxígeno y ventilación abren con un glosario plegable.</li>
+            <li>Corregido el separador decimal en las calculadoras: escribir una coma ya no borra el decimal.</li>
+          </ul>
+        </div>
+
         <div class="version">
           <div class="version-cabeza"><b>Versión 1.2.1</b><span>30 de agosto de 2026</span></div>
           <ul>
@@ -597,6 +615,20 @@
           <ul><li>Primera versión de Nurska: escalas clínicas, calculadoras, farmacología y normas oficiales, todo sin conexión.</li></ul>
         </div>
       </details>
+    </div>
+  </section>
+
+  <section id="apoya" class="capturas-fondo">
+    <div class="wrap apoya">
+      <div class="encabezado">
+        <h2>Apoya a Nurska</h2>
+        <p>Nurska está en fase beta y sigue creciendo. Es gratis y lo seguirá siendo; la desarrolla un estudiante de enfermería en su tiempo libre. Si te ha servido y quieres apoyar su desarrollo, una donación voluntaria ayuda a sumar contenido y mantenerla al día.</p>
+      </div>
+      <a class="btn btn-oscuro" href="https://link.mercadopago.com.mx/nurska" target="_blank" rel="noopener">
+        <i class="ph ph-heart" aria-hidden="true"></i>
+        Donar con Mercado Pago
+      </a>
+      <p class="nota"><span>Desde 1 peso. No es necesaria para usar la app.</span></p>
     </div>
   </section>
 
