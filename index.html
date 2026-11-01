@@ -119,6 +119,9 @@
   .btn:hover { filter: brightness(1.06); }
   .btn:active { transform: translateY(1px); }
   .btn-claro { background: var(--crema); color: var(--cafe); box-shadow: 0 10px 24px -10px rgba(0,0,0,.45); }
+  .btn-borde { background: transparent; color: var(--crema); box-shadow: inset 0 0 0 2px var(--crema); }
+  .acciones { display: flex; flex-wrap: wrap; gap: 14px; }
+  .cierre .acciones { justify-content: center; }
   .btn-oscuro { background: var(--cafe); color: var(--crema); box-shadow: 0 10px 24px -10px rgba(0,0,0,.35); }
   .apoya .nota { margin-top: 14px; }
 
@@ -346,6 +349,7 @@
     .telefono { width: min(270px, 86%); }
     section { padding-block: 60px; }
     .btn { width: 100%; justify-content: center; }
+    .acciones { flex-direction: column; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -380,10 +384,13 @@
         <li><i class="ph ph-prohibit" aria-hidden="true"></i>Sin anuncios</li>
       </ul>
 
+      <div class="acciones">
       <a class="btn btn-claro js-descarga" data-ubicacion="portada" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">
         <i class="ph ph-download-simple" aria-hidden="true"></i>
         Descargar gratis
       </a>
+      <a class="btn btn-borde" href="#instalar"><i class="ph ph-question" aria-hidden="true"></i>¿Cómo instalar?</a>
+      </div>
       <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
       <p class="descarga-nota" id="nota-version">Versión 1.5.0 para Android</p>
     </div>
@@ -636,10 +643,13 @@
     <div class="wrap">
       <h2>Lleva Nurska a tu turno</h2>
       <p>Gratis, sin registro y sin conexión. Hecho por enfermería, para enfermería.</p>
+      <div class="acciones">
       <a class="btn btn-claro js-descarga" data-ubicacion="cierre" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">
         <i class="ph ph-download-simple" aria-hidden="true"></i>
         Descargar gratis
       </a>
+      <a class="btn btn-borde" href="#instalar"><i class="ph ph-question" aria-hidden="true"></i>¿Cómo instalar?</a>
+      </div>
     </div>
   </section>
 
