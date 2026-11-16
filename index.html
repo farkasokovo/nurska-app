@@ -133,6 +133,8 @@
     color: var(--arena);
     font-size: .875rem;
   }
+  .aviso { display: none; }
+  body.m-on .aviso { display: block; }
   .aviso .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 14px; padding-block: 9px; }
   .aviso.es-android .aviso-iphone, .aviso.es-iphone .aviso-android { display: none; }
   .aviso.es-pc .aviso-iphone::before { content: "·"; margin-right: 14px; opacity: .6; }
@@ -191,6 +193,16 @@
     border: 1px solid rgba(246,243,240,.22);
   }
   .promesas i { font-size: 1.05rem; color: var(--caramelo); }
+  /* ¿Ya tienes Nurska? Tarjeta visible en la portada */
+  .actualizar { margin-top: 26px; max-width: 34rem; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 16px 20px; border-radius: var(--r-tarjeta); background: rgba(246,243,240,.1); border: 1px solid rgba(246,243,240,.22); }
+  .actualizar > i { font-size: 1.6rem; color: var(--caramelo); flex: none; }
+  .actualizar .act-texto { flex: 1 1 14rem; font-size: .95rem; color: var(--arena); }
+  .actualizar .act-texto b { display: block; color: var(--crema); font-size: 1.05rem; margin-bottom: 2px; }
+  .actualizar .btn { padding: 12px 20px; font-size: 1rem; }
+  .actualizar .btn i { font-size: 1.25rem; }
+  .actualizar.es-iphone .act-android, .actualizar.es-android .act-iphone { display: none; }
+  .actualizar.es-pc .act-iphone::before { content: " "; }
+  body.m-android .actualizar .act-android { display: none !important; }
   .descarga-nota { margin-top: 14px; font-size: .875rem; color: var(--arena); }
   .portada-texto { padding-bottom: 64px; }
 
@@ -422,13 +434,8 @@
 </head>
 <body>
 
-<div class="aviso">
-  <div class="wrap">
-    <span>¿Ya tienes Nurska?</span>
-    <a class="js-descarga aviso-android" data-ubicacion="aviso" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">Actualizar en Android</a>
-    <span class="aviso-iphone">En iPhone se actualiza sola: ábrela desde su ícono con internet.</span>
-  </div>
-</div>
+<!-- Barra superior: solo se muestra en modo mantenimiento (ver mantenimiento.json) -->
+<div class="aviso"><div class="wrap"></div></div>
 
 <header class="portada" id="descargar">
   <div class="wrap">
@@ -454,6 +461,11 @@
       <div class="mant" role="status"><i class="ph-fill ph-wrench" aria-hidden="true"></i><div><b>Estamos en mantenimiento</b><p class="js-mant-msg">Estamos corrigiendo un detalle de la última versión. Vuelve en unas horas.</p><p>Si ya tienes Nurska, sigue usándola con normalidad. No la desinstales.</p></div></div>
       <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
       <p class="descarga-nota" id="nota-version">Versión 2.0.0 para Android</p>
+      <div class="actualizar" id="actualizar">
+        <i class="ph-fill ph-arrows-clockwise" aria-hidden="true"></i>
+        <div class="act-texto"><b>¿Ya tienes Nurska?</b><span class="act-android">Descarga la versión nueva con este botón: se instala encima y conserva tus favoritos.</span><span class="act-iphone">En iPhone se actualiza sola: ábrela desde su ícono, con internet.</span></div>
+        <a class="btn btn-claro act-android js-descarga" data-ubicacion="portada_actualizar" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Actualizar en Android</a>
+      </div>
     </div>
 
     <div class="telefono">
@@ -493,9 +505,13 @@
             <h3>Abre e instala</h3>
             <p>Confirma y listo. No pide correo, contraseña ni permisos del teléfono.</p>
           </li>
+          <li>
+            <h3>Borra el archivo (opcional)</h3>
+            <p>Con Nurska ya instalada, <b>nurska.apk</b> no hace falta: bórralo de la carpeta Descargas y recuperas unos 22 MB. Es seguro: la app sigue igual y no pierdes nada.</p>
+          </li>
         </ol>
         <p class="nota"><i class="ph ph-wrench" aria-hidden="true"></i><span><b>¿Dice que el paquete no es válido o que no se instaló?</b> La descarga llegó incompleta. Borra el archivo, descárgalo otra vez con buena señal y ábrelo desde tu app de Archivos, en Descargas. No desinstales Nurska: perderías tus favoritos.</span></p>
-        <p class="nota"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span>Para actualizar no hace falta volver aquí: la app avisa cuando hay versión nueva y se instala encima sin perder nada.</span></p>
+        <p class="nota"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span><b>Para actualizar,</b> descarga de nuevo con este mismo botón: se instala encima y conservas tus favoritos y tu personalización. La app avisa cuando hay versión nueva.</span></p>
       </div>
 
       <div class="panel" id="panel-iphone" role="tabpanel" aria-labelledby="tab-iphone" hidden>
@@ -908,6 +924,8 @@ document.querySelectorAll(".js-descarga").forEach(function (a) {
   var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   var barra = document.querySelector(".aviso");
   if (barra) barra.classList.add(ios ? "es-iphone" : /Android/.test(ua) ? "es-android" : "es-pc");
+  var tarj = document.getElementById("actualizar");
+  if (tarj) tarj.classList.add(ios ? "es-iphone" : /Android/.test(ua) ? "es-android" : "es-pc");
   if (!ios) return;
   if (/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV|Line\/|Twitter|musical_ly|Bytedance/.test(ua)) {
     document.getElementById("aviso-safari").hidden = false;
