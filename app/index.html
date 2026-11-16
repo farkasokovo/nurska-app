@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#624933">
+<title>Nurska cambió de dirección</title>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px;
+    box-sizing: border-box; background: #624933; color: #F6F3F0; text-align: center;
+    font: 17px/1.5 -apple-system, system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 26rem; display: grid; gap: 22px; }
+  p { margin: 0; }
+  a { display: block; padding: 15px 22px; border-radius: 30px; background: #F6F3F0; color: #624933;
+    font-weight: 600; text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <p>Nurska web cambió de dirección. Ábrela aquí y, en iPhone, vuelve a agregarla a tu pantalla de inicio.</p>
+  <a href="https://app.nurska.app/">Abrir Nurska</a>
+</main>
+<script>
+  // Dentro de la app instalada no se redirige: la dirección nueva se abriría en
+  // una ventana desde la que no se puede instalar. Ahí se lee el aviso.
+  var instalada = window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+  if (!instalada) setTimeout(function () { location.replace('https://app.nurska.app/'); }, 3000);
+</script>
+</body>
+</html>
