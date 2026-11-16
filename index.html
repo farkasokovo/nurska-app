@@ -856,14 +856,37 @@ document.querySelectorAll(".js-descarga").forEach(function (a) {
   var barra = document.querySelector(".aviso");
   if (barra) barra.classList.add(ios ? "es-iphone" : /Android/.test(ua) ? "es-android" : "es-pc");
   if (!ios) return;
-  if (/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV/.test(ua)) {
+  if (/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV|Line\/|Twitter|musical_ly|Bytedance/.test(ua)) {
     document.getElementById("aviso-safari").hidden = false;
   }
 })();
 
+/* Botón de iPhone: si es iPhone pero NO está en Safari (Instagram,
+   Chrome, Facebook...), intenta abrir la app web directo en Safari con
+   x-safari-https:// (iOS 17 en adelante). Algunas apps lo bloquean sin
+   avisar; si a los 1.5 s seguimos aquí, se muestra el aviso con los pasos.
+   En Safari, Android y computadora el botón funciona igual que siempre. */
 document.querySelectorAll(".js-webapp").forEach(function (a) {
-  a.addEventListener("click", function () {
+  a.addEventListener("click", function (e) {
     if (typeof gtag === "function") gtag("event", "abrir_app_web", { ubicacion: a.dataset.ubicacion || "otro" });
+    var ua = navigator.userAgent || "";
+    var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var otroNavegador = /CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV|Line\/|Twitter|musical_ly|Bytedance/.test(ua);
+    if (!ios || !otroNavegador) return;
+    e.preventDefault();
+    if (typeof gtag === "function") gtag("event", "redirigir_safari", { ubicacion: a.dataset.ubicacion || "otro" });
+    var salio = false;
+    var marcar = function () { if (document.hidden) salio = true; };
+    document.addEventListener("visibilitychange", marcar);
+    window.addEventListener("pagehide", function () { salio = true; });
+    location.href = "x-safari-" + a.href;
+    setTimeout(function () {
+      document.removeEventListener("visibilitychange", marcar);
+      if (salio) return;
+      var aviso = document.getElementById("aviso-safari");
+      aviso.hidden = false;
+      aviso.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 1500);
   });
 });
 
