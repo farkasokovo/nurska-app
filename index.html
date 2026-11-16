@@ -397,7 +397,28 @@
     html { scroll-behavior: auto; }
     * { transition: none !important; }
   }
-  </style>
+  
+  /* Modo mantenimiento: lo prende mantenimiento.json (activo, android, iphone,
+     mensaje). Esconde los botones de la plataforma en pausa y muestra la tarjeta.
+     Rojo = redAlertv3 de la app. */
+  .mant { display: none; gap: 14px; align-items: flex-start; padding: 18px 20px; border-radius: var(--r-tarjeta); background: #7E4B4F; color: #F6F3F0; max-width: 40rem; text-align: left; box-shadow: var(--sombra); }
+  .mant i { font-size: 1.6rem; flex: none; margin-top: 2px; }
+  .mant b { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+  .mant p { margin: 0; font-size: .95rem; line-height: 1.45; color: #F6F3F0; }
+  .mant p + p { margin-top: 8px; opacity: .9; }
+  .cierre .mant { margin-inline: auto; }
+  body.m-on .mant { display: flex; }
+  body.m-android .js-plataforma[data-plataforma="android"],
+  body.m-iphone .js-plataforma[data-plataforma="iphone"],
+  body.m-android #panel-android > :not(.mant),
+  body.m-iphone #panel-iphone > :not(.mant),
+  body.m-android #nota-version { display: none !important; }
+  body.m-on .aviso { background: #7E4B4F; }
+  body.m-on .aviso .wrap > * { display: none; }
+  body.m-on .aviso .wrap::before { content: "Nurska está en mantenimiento. Las descargas vuelven pronto."; font-weight: 600; }
+  body.m-on.m-solo-android .aviso .wrap::before { content: "La descarga para Android está en pausa por mantenimiento."; }
+  body.m-on.m-solo-iphone .aviso .wrap::before { content: "La versión para iPhone está en pausa por mantenimiento."; }
+</style>
 </head>
 <body>
 
@@ -430,6 +451,7 @@
       <a class="btn btn-claro js-plataforma" data-plataforma="android" data-ubicacion="portada" href="#android"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Descargar para Android</a>
       <a class="btn btn-borde js-plataforma" data-plataforma="iphone" data-ubicacion="portada" href="#iphone"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i>Descargar para iPhone</a>
       </div>
+      <div class="mant" role="status"><i class="ph-fill ph-wrench" aria-hidden="true"></i><div><b>Estamos en mantenimiento</b><p class="js-mant-msg">Estamos corrigiendo un detalle de la última versión. Vuelve en unas horas.</p><p>Si ya tienes Nurska, sigue usándola con normalidad. No la desinstales.</p></div></div>
       <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
       <p class="descarga-nota" id="nota-version">Versión 2.0.0 para Android</p>
     </div>
@@ -454,6 +476,7 @@
       </div>
 
       <div class="panel" id="panel-android" role="tabpanel" aria-labelledby="tab-android">
+        <div class="mant" role="status"><i class="ph-fill ph-wrench" aria-hidden="true"></i><div><b>Estamos en mantenimiento</b><p class="js-mant-msg">Estamos corrigiendo un detalle de la última versión. Vuelve en unas horas.</p><p>Si ya tienes Nurska, sigue usándola con normalidad. No la desinstales.</p></div></div>
         <div class="acciones panel-acciones panel-arriba">
           <a class="btn btn-oscuro js-descarga" data-ubicacion="seccion_android" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Descargar para Android</a>
         </div>
@@ -476,6 +499,7 @@
       </div>
 
       <div class="panel" id="panel-iphone" role="tabpanel" aria-labelledby="tab-iphone" hidden>
+        <div class="mant" role="status"><i class="ph-fill ph-wrench" aria-hidden="true"></i><div><b>Estamos en mantenimiento</b><p class="js-mant-msg">Estamos corrigiendo un detalle de la última versión. Vuelve en unas horas.</p><p>Si ya tienes Nurska, sigue usándola con normalidad. No la desinstales.</p></div></div>
         <p class="aviso-safari" id="aviso-safari" hidden><i class="ph-fill ph-warning-circle" aria-hidden="true"></i><span>Estás en otro navegador o dentro de una app como Instagram. Ábrela en <b>Safari</b> para poder instalar Nurska: toca el menú <b>···</b> y elige abrir en el navegador, o copia el enlace y pégalo en Safari.</span></p>
         <div class="boton-con-nota">
         <div class="acciones panel-acciones panel-arriba con-nota">
@@ -792,6 +816,7 @@
       <a class="btn btn-claro js-plataforma" data-plataforma="android" data-ubicacion="cierre" href="#android"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Descargar para Android</a>
       <a class="btn btn-borde js-plataforma" data-plataforma="iphone" data-ubicacion="cierre" href="#iphone"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i>Descargar para iPhone</a>
       </div>
+      <div class="mant" role="status"><i class="ph-fill ph-wrench" aria-hidden="true"></i><div><b>Estamos en mantenimiento</b><p class="js-mant-msg">Estamos corrigiendo un detalle de la última versión. Vuelve en unas horas.</p><p>Si ya tienes Nurska, sigue usándola con normalidad. No la desinstales.</p></div></div>
     </div>
   </section>
 
@@ -809,6 +834,33 @@
 </footer>
 
 <script>
+
+/* Modo mantenimiento. Para prenderlo se edita mantenimiento.json en GitHub
+   (se puede desde el celular): {"activo": true, "android": true,
+   "iphone": false, "mensaje": "..."}. Si el archivo falla, la página
+   se queda normal. */
+(function () {
+  fetch("mantenimiento.json", { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (m) {
+      if (!m || !m.activo) return;
+      var and = m.android !== false, ios = m.iphone !== false;
+      if (!and && !ios) return;
+      var b = document.body.classList;
+      b.add("m-on");
+      if (and) b.add("m-android");
+      if (ios) b.add("m-iphone");
+      if (and && !ios) b.add("m-solo-android");
+      if (ios && !and) b.add("m-solo-iphone");
+      if (m.mensaje) document.querySelectorAll(".js-mant-msg").forEach(function (p) { p.textContent = m.mensaje; });
+      document.querySelectorAll(".mant").forEach(function (c) {
+        var enPanel = c.closest(".panel");
+        if (enPanel && !b.contains(enPanel.id === "panel-android" ? "m-android" : "m-iphone")) c.remove();
+      });
+      if (typeof gtag === "function") gtag("event", "ver_mantenimiento");
+    })
+    .catch(function () {});
+})();
 /* Cuenta cada clic de descarga en Google Analytics, con el lugar de la
    página desde donde se hizo (aviso, portada o cierre). */
 document.querySelectorAll(".js-descarga").forEach(function (a) {
