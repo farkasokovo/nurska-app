@@ -301,6 +301,7 @@
   .selector button[aria-selected="true"] { background: var(--cafe); color: var(--crema); }
   .panel[hidden] { display: none; }
   .panel-acciones { margin-top: 28px; }
+  .panel-arriba { margin-top: 0; margin-bottom: 28px; }
   .aviso-safari { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 24px; padding: 14px 18px; border-radius: var(--r-tarjeta); background: var(--cafe); color: var(--crema); font-size: .92rem; max-width: 40rem; }
   .aviso-safari[hidden] { display: none; }
   .aviso-safari i { font-size: 1.3rem; flex: none; }
@@ -444,6 +445,9 @@
       </div>
 
       <div class="panel" id="panel-android" role="tabpanel" aria-labelledby="tab-android">
+        <div class="acciones panel-acciones panel-arriba">
+          <a class="btn btn-oscuro js-descarga" data-ubicacion="seccion_android" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Descargar para Android</a>
+        </div>
         <ol class="pasos">
           <li>
             <h3>Descarga el archivo</h3>
@@ -458,22 +462,22 @@
             <p>Confirma y listo. No pide correo, contraseña ni permisos del teléfono.</p>
           </li>
         </ol>
-        <div class="acciones panel-acciones">
-          <a class="btn btn-oscuro js-descarga" data-ubicacion="seccion_android" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk"><i class="ph ph-download-simple" aria-hidden="true"></i>Descargar para Android</a>
-        </div>
         <p class="nota"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span>Para actualizar no hace falta volver aquí: la app avisa cuando hay versión nueva y se instala encima sin perder nada.</span></p>
       </div>
 
       <div class="panel" id="panel-iphone" role="tabpanel" aria-labelledby="tab-iphone" hidden>
         <p class="aviso-safari" id="aviso-safari" hidden><i class="ph-fill ph-warning-circle" aria-hidden="true"></i><span>Estás en otro navegador o dentro de una app como Instagram. Ábrela en <b>Safari</b> para poder instalar Nurska: toca el menú <b>···</b> y elige abrir en el navegador, o copia el enlace y pégalo en Safari.</span></p>
+        <div class="acciones panel-acciones panel-arriba">
+          <a class="btn btn-oscuro js-webapp" data-ubicacion="seccion_iphone" href="app/"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i>Descargar para iPhone</a>
+        </div>
         <ol class="pasos">
           <li>
-            <h3>Ábrela en Safari</h3>
-            <p>Toca el botón de abajo <b>desde Safari</b>, el navegador de la brújula azul. En Chrome u otros navegadores no se instala bien.</p>
+            <h3>Abrir en Safari (obligatorio)</h3>
+            <p>Toca el botón de arriba <b>desde Safari</b>, el navegador de la brújula azul. En Chrome u otros navegadores no se instala bien.</p>
           </li>
           <li>
-            <h3>Espera a que cargue</h3>
-            <p>La primera vez tarda unos segundos en aparecer y unos 30 segundos más en guardarse completa. Déjala abierta con buena señal antes de instalarla.</p>
+            <h3>Espera de 20 a 30 segundos</h3>
+            <p>La primera vez tarda unos segundos en aparecer y unos 20 segundos más en guardarse completa. Déjala abierta con buena señal antes de instalarla.</p>
           </li>
           <li>
             <h3>Agrégala a tu inicio</h3>
@@ -484,15 +488,26 @@
             <p>Usa siempre el ícono café de tu pantalla de inicio: desde ahí funciona sin señal y se actualiza sola cuando hay internet.</p>
           </li>
         </ol>
-        <div class="acciones panel-acciones">
-          <a class="btn btn-oscuro js-webapp" data-ubicacion="seccion_iphone" href="app/"><i class="ph ph-apple-logo" aria-hidden="true"></i>Abrir Nurska en Safari</a>
-        </div>
-        <p class="nota"><i class="ph ph-info" aria-hidden="true"></i><span>La app web registra estadísticas anónimas de uso, como las pantallas que se abren, para saber qué mejorar. Nunca registra lo que escribes. Más detalles en el <a href="https://farkasokovo.github.io/nurska-privacidad/">aviso de privacidad</a>.</span></p>
       </div>
     </div>
   </section>
 
-  <section id="contenido">
+  <section aria-labelledby="capturas-titulo">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2 id="capturas-titulo">Así se ve</h2>
+        <p>Colores cálidos, letra grande y botones pensados para usarse con una mano.</p>
+      </div>
+      <div class="capturas">
+        <img src="assets/img/escalas.webp" alt="Escala de Downton con el resultado de 3 puntos, riesgo alto de caídas" width="540" height="960" loading="lazy">
+        <img src="assets/img/farmaco.webp" alt="Ficha de tramadol con las pastillas de vía, embarazo y lactancia, y su farmacodinamia" width="540" height="960" loading="lazy">
+        <img src="assets/img/calculadora.webp" alt="Calculadora de regla de tres con dosis indicada, diluyente y presentación del fármaco" width="540" height="960" loading="lazy">
+        <img src="assets/img/esenciales.webp" alt="Ficha esencial de ritmos de paro cardiaco con su tabla y un trazo de fibrilación ventricular" width="540" height="960" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="contenido" class="capturas-fondo">
     <div class="wrap">
       <div class="encabezado">
         <h2>Lo que trae dentro</h2>
@@ -590,21 +605,6 @@
           </dl>
         </article>
 
-      </div>
-    </div>
-  </section>
-
-  <section class="capturas-fondo" aria-labelledby="capturas-titulo">
-    <div class="wrap">
-      <div class="encabezado">
-        <h2 id="capturas-titulo">Así se ve</h2>
-        <p>Colores cálidos, letra grande y botones pensados para usarse con una mano.</p>
-      </div>
-      <div class="capturas">
-        <img src="assets/img/escalas.webp" alt="Escala de Downton con el resultado de 3 puntos, riesgo alto de caídas" width="540" height="960" loading="lazy">
-        <img src="assets/img/farmaco.webp" alt="Ficha de tramadol con las pastillas de vía, embarazo y lactancia, y su farmacodinamia" width="540" height="960" loading="lazy">
-        <img src="assets/img/calculadora.webp" alt="Calculadora de regla de tres con dosis indicada, diluyente y presentación del fármaco" width="540" height="960" loading="lazy">
-        <img src="assets/img/esenciales.webp" alt="Ficha esencial de ritmos de paro cardiaco con su tabla y un trazo de fibrilación ventricular" width="540" height="960" loading="lazy">
       </div>
     </div>
   </section>
