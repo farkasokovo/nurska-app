@@ -13,14 +13,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nurska | Referencia clínica de enfermería</title>
-  <meta name="description" content="Escalas, fármacos, dilución, calculadoras, procedimientos y fichas de consulta rápida para enfermería. Funciona sin señal, sin cuenta y sin anuncios. Gratis para Android.">
+  <meta name="description" content="Escalas, fármacos, dilución, calculadoras, procedimientos y fichas de consulta rápida para enfermería. Funciona sin señal, sin cuenta y sin anuncios. Gratis para Android y iPhone.">
   <meta name="theme-color" content="#624933">
 
   <!-- Vista previa al compartir el enlace (WhatsApp, Facebook, etc.) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
   <meta property="og:title" content="Nurska | Referencia clínica de enfermería">
-  <meta property="og:description" content="Escalas, fármacos, dilución, calculadoras y procedimientos para consultar en pleno turno. Funciona sin señal. Gratis para Android.">
+  <meta property="og:description" content="Escalas, fármacos, dilución, calculadoras y procedimientos para consultar en pleno turno. Funciona sin señal. Gratis para Android y iPhone.">
   <meta property="og:url" content="https://farkasokovo.github.io/nurska-app/">
   <meta property="og:image" content="https://farkasokovo.github.io/nurska-app/assets/nurska_icon.png">
 
@@ -293,6 +293,15 @@
   .nota i { font-size: 1.2rem; color: var(--tinta-2); flex: none; margin-top: 2px; }
 
 
+
+  /* iPhone */
+  .iphone-acciones { margin-top: 28px; }
+  .aviso-safari { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 24px; padding: 14px 18px; border-radius: var(--r-tarjeta); background: var(--cafe); color: var(--crema); font-size: .92rem; max-width: 40rem; }
+  .aviso-safari[hidden] { display: none; }
+  .aviso-safari i { font-size: 1.3rem; flex: none; }
+  .pasos p i { vertical-align: -2px; }
+  .nota a { color: var(--tinta-2); font-weight: 600; }
+
   /* ¿Es seguro? */
   .preguntas { display: grid; gap: 12px; max-width: 46rem; }
   .preguntas details {
@@ -408,6 +417,7 @@
         Descargar gratis
       </a>
       <a class="btn btn-borde" href="#instalar"><i class="ph ph-question" aria-hidden="true"></i>¿Cómo instalar?</a>
+      <a class="btn btn-borde js-iphone" href="#iphone"><i class="ph ph-apple-logo" aria-hidden="true"></i>¿Tienes iPhone?</a>
       </div>
       <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
       <p class="descarga-nota" id="nota-version">Versión 2.0.0 para Android</p>
@@ -568,7 +578,7 @@
   <section id="instalar" class="capturas-fondo">
     <div class="wrap">
       <div class="encabezado">
-        <h2>Cómo se instala</h2>
+        <h2>Cómo se instala en Android</h2>
         <p>Nurska se descarga desde esta página, no desde una tienda. Toma un minuto.</p>
       </div>
       <ol class="pasos">
@@ -589,6 +599,38 @@
     </div>
   </section>
 
+  <section id="iphone">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2>Nurska en iPhone</h2>
+        <p>En iPhone, Nurska funciona como app web: se instala desde Safari, queda con su ícono en la pantalla de inicio y, después de la primera vez, funciona sin señal. Gratis y sin cuenta, igual que en Android.</p>
+      </div>
+      <p class="aviso-safari" id="aviso-safari" hidden><i class="ph-fill ph-warning-circle" aria-hidden="true"></i><span>Estás en otro navegador o dentro de una app como Instagram. Ábrela en <b>Safari</b> para poder instalar Nurska: toca el menú <b>···</b> y elige abrir en el navegador, o copia el enlace y pégalo en Safari.</span></p>
+      <ol class="pasos">
+        <li>
+          <h3>Ábrela en Safari</h3>
+          <p>Toca el botón de abajo <b>desde Safari</b>, el navegador de la brújula azul. En Chrome u otros navegadores no se instala bien.</p>
+        </li>
+        <li>
+          <h3>Espera a que cargue</h3>
+          <p>La primera vez tarda unos segundos en aparecer y unos 30 segundos más en guardarse completa. Déjala abierta con buena señal antes de instalarla.</p>
+        </li>
+        <li>
+          <h3>Agrégala a tu inicio</h3>
+          <p>Toca <b>Compartir</b> <i class="ph ph-export" aria-hidden="true"></i>, elige <b>Agregar a pantalla de inicio</b> y luego <b>Agregar</b>.</p>
+        </li>
+        <li>
+          <h3>Ábrela desde su ícono</h3>
+          <p>Usa siempre el ícono café de tu pantalla de inicio: desde ahí funciona sin señal y se actualiza sola cuando hay internet.</p>
+        </li>
+      </ol>
+      <div class="acciones iphone-acciones">
+        <a class="btn btn-oscuro js-webapp" data-ubicacion="seccion_iphone" href="app/"><i class="ph ph-apple-logo" aria-hidden="true"></i>Abrir Nurska en Safari</a>
+      </div>
+      <p class="nota"><i class="ph ph-info" aria-hidden="true"></i><span>La app web registra estadísticas anónimas de uso, como las pantallas que se abren, para saber qué mejorar. Nunca registra lo que escribes. Más detalles en el <a href="https://farkasokovo.github.io/nurska-privacidad/">aviso de privacidad</a>.</span></p>
+    </div>
+  </section>
+
   <section id="seguridad">
     <div class="wrap">
       <div class="encabezado">
@@ -602,7 +644,7 @@
         </details>
         <details>
           <summary>¿Qué permisos pide?</summary>
-          <p>Ninguno que tengas que aceptar: no usa cámara, micrófono, contactos, ubicación ni tus archivos, y no pide correo ni contraseña. Solo se conecta a internet para avisarte cuando hay versión nueva; todo el contenido funciona sin señal y no guarda ni envía datos de tus pacientes.</p>
+          <p>Ninguno que tengas que aceptar: no usa cámara, micrófono, contactos, ubicación ni tus archivos, y no pide correo ni contraseña. Solo se conecta a internet para avisarte cuando hay versión nueva; todo el contenido funciona sin señal y no guarda ni envía datos de tus pacientes. La app web para iPhone registra además estadísticas anónimas de uso, nunca lo que escribes.</p>
         </details>
         <details>
           <summary>¿De dónde sale el archivo?</summary>
@@ -734,6 +776,7 @@
         Descargar gratis
       </a>
       <a class="btn btn-borde" href="#instalar"><i class="ph ph-question" aria-hidden="true"></i>¿Cómo instalar?</a>
+      <a class="btn btn-borde js-iphone" href="#iphone"><i class="ph ph-apple-logo" aria-hidden="true"></i>¿Tienes iPhone?</a>
       </div>
     </div>
   </section>
@@ -762,6 +805,35 @@ document.querySelectorAll(".js-descarga").forEach(function (a) {
   });
 });
 
+/* En iPhone el APK no sirve: los botones de descarga llevan a la sección de iPhone.
+   Si el iPhone usa otro navegador (Chrome, Firefox, Edge...), se avisa que abra Safari. */
+(function () {
+  var ua = navigator.userAgent || "";
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (!ios) return;
+  document.querySelectorAll(".js-descarga").forEach(function (a) {
+    a.setAttribute("href", "#iphone");
+    a.classList.remove("js-descarga");
+    var t = a.lastChild;
+    if (t && t.nodeType === 3 && /Descargar/.test(t.textContent)) t.textContent = " Usar Nurska en iPhone";
+    if (/Descargar la última versión/.test(a.textContent)) a.textContent = "Usar Nurska en iPhone";
+  });
+  var aviso = document.querySelector(".aviso"); if (aviso) aviso.style.display = "none";
+  document.querySelectorAll(".js-iphone").forEach(function (a) { a.hidden = true; a.style.display = "none"; });
+  document.querySelectorAll('a.btn[href="#instalar"]').forEach(function (a) { a.style.display = "none"; });
+  window.nurskaIOS = true;
+  document.getElementById("nota-version").textContent = "Gratis para iPhone, desde Safari";
+  if (/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV/.test(ua)) {
+    document.getElementById("aviso-safari").hidden = false;
+  }
+})();
+
+document.querySelectorAll(".js-webapp").forEach(function (a) {
+  a.addEventListener("click", function () {
+    if (typeof gtag === "function") gtag("event", "abrir_app_web", { ubicacion: a.dataset.ubicacion || "otro" });
+  });
+});
+
 /* Lee la versión y el peso del último Release de GitHub para no editar
    este archivo en cada publicación. Si falla (sin red, límite de la API),
    se queda el texto escrito arriba, que debe coincidir con lo publicado. */
@@ -775,7 +847,7 @@ document.querySelectorAll(".js-descarga").forEach(function (a) {
       if (!tag) return;
       var apk = (data.assets || []).filter(function (a) { return /\.apk$/i.test(a.name || ""); })[0];
       var peso = apk && apk.size ? ", " + Math.round(apk.size / 1048576) + " MB" : "";
-      document.getElementById("nota-version").textContent = "Versión " + tag + " para Android" + peso;
+      if (!window.nurskaIOS) document.getElementById("nota-version").textContent = "Versión " + tag + " para Android" + peso;
       var huella = apk && /^sha256:/.test(apk.digest || "") ? apk.digest.slice(7) : "";
       if (huella) {
         document.getElementById("huella-apk").textContent = huella + " (versión " + tag + ")";
