@@ -381,6 +381,11 @@
   details.anteriores { border-top: 1px solid var(--linea); padding-top: 18px; }
   details.anteriores summary { cursor: pointer; font-weight: 600; color: var(--tinta-2); }
 
+  /* NursClips: redes del mismo creador */
+  .redes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .redes .btn { padding: 14px 22px; font-size: 1rem; }
+  .redes .btn i { font-size: 1.35rem; }
+
   /* Cierre */
   .cierre {
     background: linear-gradient(165deg, var(--cafe) 0%, var(--cafe-hondo) 100%);
@@ -828,6 +833,20 @@
     </div>
   </section>
 
+  <section id="nursclips">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2>Del mismo creador: NursClips</h2>
+        <p>NursClips es el canal de videos animados de farmacología y fisiopatología para enfermería, hecho por el mismo estudiante que desarrolla Nurska. Cada fármaco explicado en menos de tres minutos.</p>
+      </div>
+      <div class="redes">
+        <a class="btn btn-oscuro js-red" data-red="tiktok" href="https://www.tiktok.com/@nursclips" target="_blank" rel="noopener"><i class="ph-fill ph-tiktok-logo" aria-hidden="true"></i>TikTok</a>
+        <a class="btn btn-oscuro js-red" data-red="instagram" href="https://www.instagram.com/nursclips/" target="_blank" rel="noopener"><i class="ph-fill ph-instagram-logo" aria-hidden="true"></i>Instagram</a>
+        <a class="btn btn-oscuro js-red" data-red="facebook" href="https://www.facebook.com/share/1KeH8doGxa/" target="_blank" rel="noopener"><i class="ph-fill ph-facebook-logo" aria-hidden="true"></i>Facebook</a>
+      </div>
+    </div>
+  </section>
+
   <section class="cierre">
     <div class="wrap">
       <h2>Lleva Nurska a tu turno</h2>
@@ -854,6 +873,12 @@
 </footer>
 
 <script>
+
+document.querySelectorAll(".js-red").forEach(function (a) {
+  a.addEventListener("click", function () {
+    if (typeof gtag === "function") gtag("event", "abrir_nursclips", { red: a.dataset.red });
+  });
+});
 
 /* Modo mantenimiento. Para prenderlo se edita mantenimiento.json en GitHub
    (se puede desde el celular): {"activo": true, "android": true,
