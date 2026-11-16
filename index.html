@@ -134,6 +134,8 @@
     font-size: .875rem;
   }
   .aviso .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 14px; padding-block: 9px; }
+  .aviso.es-android .aviso-iphone, .aviso.es-iphone .aviso-android { display: none; }
+  .aviso.es-pc .aviso-iphone::before { content: "·"; margin-right: 14px; opacity: .6; }
   .aviso a { color: var(--crema); font-weight: 600; text-underline-offset: 3px; }
 
   /* ---------------------------------------------------------------
@@ -395,8 +397,9 @@
 
 <div class="aviso">
   <div class="wrap">
-    <span>¿Ya tienes Nurska y vienes a actualizar?</span>
-    <a class="js-descarga" data-ubicacion="aviso" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">Descargar la última versión</a>
+    <span>¿Ya tienes Nurska?</span>
+    <a class="js-descarga aviso-android" data-ubicacion="aviso" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">Actualizar en Android</a>
+    <span class="aviso-iphone">En iPhone se actualiza sola: ábrela desde su ícono con internet.</span>
   </div>
 </div>
 
@@ -837,12 +840,13 @@ document.querySelectorAll(".js-descarga").forEach(function (a) {
     setTimeout(function () { seccion.scrollIntoView({ block: "start" }); }, 0);
   }
 
-  /* En iPhone: sin la barra de "vienes a actualizar" (es del APK) y, si abrió desde
+  /* Barra superior según el celular. En iPhone, si abrió desde
      Instagram, Chrome u otro navegador, aviso de que use Safari. */
   var ua = navigator.userAgent || "";
   var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var barra = document.querySelector(".aviso");
+  if (barra) barra.classList.add(ios ? "es-iphone" : /Android/.test(ua) ? "es-android" : "es-pc");
   if (!ios) return;
-  var aviso = document.querySelector(".aviso"); if (aviso) aviso.style.display = "none";
   if (/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV/.test(ua)) {
     document.getElementById("aviso-safari").hidden = false;
   }
