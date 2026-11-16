@@ -1,5 +1,5 @@
 {
-  "activo": false,
+  "activo": true,
   "android": true,
   "iphone": false,
   "mensaje": "Estamos corrigiendo un detalle de la última versión. Vuelve en unas horas."
