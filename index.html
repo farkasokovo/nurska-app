@@ -304,6 +304,12 @@
   .panel[hidden] { display: none; }
   .panel-acciones { margin-top: 28px; }
   .panel-arriba { margin-top: 0; margin-bottom: 28px; }
+  .panel-arriba.con-nota { margin-bottom: 10px; }
+  .boton-con-nota { display: flex; flex-direction: column; align-items: center; width: fit-content; max-width: 100%; margin-bottom: 28px; }
+  .boton-con-nota .acciones { width: 100%; }
+  @media (max-width: 600px) { .boton-con-nota { width: 100%; } .boton-con-nota .btn { width: 100%; justify-content: center; } }
+  .nota-safari { display: flex; align-items: center; gap: 6px; margin: 0; font-weight: 700; color: var(--tinta-2); }
+  .nota-safari i { font-size: 1.15rem; }
   .aviso-safari { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 24px; padding: 14px 18px; border-radius: var(--r-tarjeta); background: var(--cafe); color: var(--crema); font-size: .92rem; max-width: 40rem; }
   .aviso-safari[hidden] { display: none; }
   .aviso-safari i { font-size: 1.3rem; flex: none; }
@@ -470,8 +476,11 @@
 
       <div class="panel" id="panel-iphone" role="tabpanel" aria-labelledby="tab-iphone" hidden>
         <p class="aviso-safari" id="aviso-safari" hidden><i class="ph-fill ph-warning-circle" aria-hidden="true"></i><span>Estás en otro navegador o dentro de una app como Instagram. Ábrela en <b>Safari</b> para poder instalar Nurska: toca el menú <b>···</b> y elige abrir en el navegador, o copia el enlace y pégalo en Safari.</span></p>
-        <div class="acciones panel-acciones panel-arriba">
+        <div class="boton-con-nota">
+        <div class="acciones panel-acciones panel-arriba con-nota">
           <a class="btn btn-oscuro js-webapp" data-ubicacion="seccion_iphone" href="app/"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i>Descargar para iPhone</a>
+        </div>
+        <p class="nota-safari"><i class="ph-fill ph-compass" aria-hidden="true"></i>Abrir en Safari</p>
         </div>
         <ol class="pasos">
           <li>
