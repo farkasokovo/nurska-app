@@ -200,8 +200,11 @@
   .actualizar .act-texto b { display: block; color: var(--crema); font-size: 1.05rem; margin-bottom: 2px; }
   .actualizar .btn { padding: 12px 20px; font-size: 1rem; }
   .actualizar .btn i { font-size: 1.25rem; }
-  .actualizar.es-iphone .act-android, .actualizar.es-android .act-iphone { display: none; }
-  .actualizar.es-pc .act-iphone::before { content: " "; }
+  .actualizar .act-iphone { display: none; }
+  .actualizar.es-iphone .act-iphone { display: inline; }
+  .actualizar.es-iphone .act-android { display: none; }
+  .actualizar-nota { margin: 10px 4px 0; max-width: 34rem; font-size: .8rem; color: var(--arena); opacity: .85; }
+  .actualizar.es-iphone + .actualizar-nota, body.m-android .actualizar + .actualizar-nota { display: none; }
   body.m-android .actualizar .act-android { display: none !important; }
   .descarga-nota { margin-top: 14px; font-size: .875rem; color: var(--arena); }
   .portada-texto { padding-bottom: 64px; }
@@ -466,6 +469,7 @@
         <div class="act-texto"><b>¿Ya tienes Nurska?</b><span class="act-android">Descarga la versión nueva con este botón: se instala encima y conserva tus favoritos.</span><span class="act-iphone">En iPhone se actualiza sola: ábrela desde su ícono, con internet.</span></div>
         <a class="btn btn-claro act-android js-descarga" data-ubicacion="portada_actualizar" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Actualizar en Android</a>
       </div>
+      <p class="actualizar-nota">En iPhone no hace falta: la app se actualiza sola al abrirla con internet.</p>
     </div>
 
     <div class="telefono">
