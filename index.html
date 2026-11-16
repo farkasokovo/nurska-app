@@ -294,8 +294,13 @@
 
 
 
-  /* iPhone */
-  .iphone-acciones { margin-top: 28px; }
+  /* Instalación: selector Android / iPhone */
+  .selector { display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 28px; border-radius: var(--r-grande); background: var(--linea); }
+  .selector button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border: 0; border-radius: var(--r-grande); background: transparent; color: var(--tinta-2); font: inherit; font-weight: 600; cursor: pointer; }
+  .selector button i { font-size: 1.2rem; }
+  .selector button[aria-selected="true"] { background: var(--cafe); color: var(--crema); }
+  .panel[hidden] { display: none; }
+  .panel-acciones { margin-top: 28px; }
   .aviso-safari { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 24px; padding: 14px 18px; border-radius: var(--r-tarjeta); background: var(--cafe); color: var(--crema); font-size: .92rem; max-width: 40rem; }
   .aviso-safari[hidden] { display: none; }
   .aviso-safari i { font-size: 1.3rem; flex: none; }
@@ -412,12 +417,8 @@
       </ul>
 
       <div class="acciones">
-      <a class="btn btn-claro js-descarga" data-ubicacion="portada" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">
-        <i class="ph ph-download-simple" aria-hidden="true"></i>
-        Descargar gratis
-      </a>
-      <a class="btn btn-borde" href="#instalar"><i class="ph ph-question" aria-hidden="true"></i>¿Cómo instalar?</a>
-      <a class="btn btn-borde js-iphone" href="#iphone"><i class="ph ph-apple-logo" aria-hidden="true"></i>¿Tienes iPhone?</a>
+      <a class="btn btn-claro js-plataforma" data-plataforma="android" data-ubicacion="portada" href="#android"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Descargar para Android</a>
+      <a class="btn btn-borde js-plataforma" data-plataforma="iphone" data-ubicacion="portada" href="#iphone"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i>Descargar para iPhone</a>
       </div>
       <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
       <p class="descarga-nota" id="nota-version">Versión 2.0.0 para Android</p>
@@ -430,6 +431,66 @@
 </header>
 
 <main>
+
+  <section id="instalar" class="capturas-fondo">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2 id="instalar-titulo">Nurska en Android</h2>
+        <p id="instalar-texto" data-android="Nurska se descarga desde esta página, no desde una tienda. Toma un minuto." data-iphone="En iPhone, Nurska funciona como app web: se instala desde Safari, queda con su ícono en la pantalla de inicio y, después de la primera vez, funciona sin señal. Gratis y sin cuenta, igual que en Android.">Nurska se descarga desde esta página, no desde una tienda. Toma un minuto.</p>
+      </div>
+      <div class="selector" role="tablist" aria-label="Elige tu celular">
+        <button type="button" role="tab" id="tab-android" data-plataforma="android" aria-selected="true" aria-controls="panel-android"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Android</button>
+        <button type="button" role="tab" id="tab-iphone" data-plataforma="iphone" aria-selected="false" aria-controls="panel-iphone"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i>iPhone</button>
+      </div>
+
+      <div class="panel" id="panel-android" role="tabpanel" aria-labelledby="tab-android">
+        <ol class="pasos">
+          <li>
+            <h3>Descarga el archivo</h3>
+            <p>El botón baja <b>nurska.apk</b> a la carpeta de Descargas de tu celular.</p>
+          </li>
+          <li>
+            <h3>Permite la instalación</h3>
+            <p>Android avisa que la app viene de una fuente desconocida, como con cualquier archivo que no sale de Play. Activa el permiso para tu navegador o tu gestor de archivos.</p>
+          </li>
+          <li>
+            <h3>Abre e instala</h3>
+            <p>Confirma y listo. No pide correo, contraseña ni permisos del teléfono.</p>
+          </li>
+        </ol>
+        <div class="acciones panel-acciones">
+          <a class="btn btn-oscuro js-descarga" data-ubicacion="seccion_android" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk"><i class="ph ph-download-simple" aria-hidden="true"></i>Descargar para Android</a>
+        </div>
+        <p class="nota"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span>Para actualizar no hace falta volver aquí: la app avisa cuando hay versión nueva y se instala encima sin perder nada.</span></p>
+      </div>
+
+      <div class="panel" id="panel-iphone" role="tabpanel" aria-labelledby="tab-iphone" hidden>
+        <p class="aviso-safari" id="aviso-safari" hidden><i class="ph-fill ph-warning-circle" aria-hidden="true"></i><span>Estás en otro navegador o dentro de una app como Instagram. Ábrela en <b>Safari</b> para poder instalar Nurska: toca el menú <b>···</b> y elige abrir en el navegador, o copia el enlace y pégalo en Safari.</span></p>
+        <ol class="pasos">
+          <li>
+            <h3>Ábrela en Safari</h3>
+            <p>Toca el botón de abajo <b>desde Safari</b>, el navegador de la brújula azul. En Chrome u otros navegadores no se instala bien.</p>
+          </li>
+          <li>
+            <h3>Espera a que cargue</h3>
+            <p>La primera vez tarda unos segundos en aparecer y unos 30 segundos más en guardarse completa. Déjala abierta con buena señal antes de instalarla.</p>
+          </li>
+          <li>
+            <h3>Agrégala a tu inicio</h3>
+            <p>Toca <b>Compartir</b> <i class="ph ph-export" aria-hidden="true"></i>, elige <b>Agregar a pantalla de inicio</b> y luego <b>Agregar</b>.</p>
+          </li>
+          <li>
+            <h3>Ábrela desde su ícono</h3>
+            <p>Usa siempre el ícono café de tu pantalla de inicio: desde ahí funciona sin señal y se actualiza sola cuando hay internet.</p>
+          </li>
+        </ol>
+        <div class="acciones panel-acciones">
+          <a class="btn btn-oscuro js-webapp" data-ubicacion="seccion_iphone" href="app/"><i class="ph ph-apple-logo" aria-hidden="true"></i>Abrir Nurska en Safari</a>
+        </div>
+        <p class="nota"><i class="ph ph-info" aria-hidden="true"></i><span>La app web registra estadísticas anónimas de uso, como las pantallas que se abren, para saber qué mejorar. Nunca registra lo que escribes. Más detalles en el <a href="https://farkasokovo.github.io/nurska-privacidad/">aviso de privacidad</a>.</span></p>
+      </div>
+    </div>
+  </section>
 
   <section id="contenido">
     <div class="wrap">
@@ -575,63 +636,7 @@
     </div>
   </section>
 
-  <section id="instalar" class="capturas-fondo">
-    <div class="wrap">
-      <div class="encabezado">
-        <h2>Cómo se instala en Android</h2>
-        <p>Nurska se descarga desde esta página, no desde una tienda. Toma un minuto.</p>
-      </div>
-      <ol class="pasos">
-        <li>
-          <h3>Descarga el archivo</h3>
-          <p>El botón baja <b>nurska.apk</b> a la carpeta de Descargas de tu celular.</p>
-        </li>
-        <li>
-          <h3>Permite la instalación</h3>
-          <p>Android avisa que la app viene de una fuente desconocida, como con cualquier archivo que no sale de Play. Activa el permiso para tu navegador o tu gestor de archivos.</p>
-        </li>
-        <li>
-          <h3>Abre e instala</h3>
-          <p>Confirma y listo. No pide correo, contraseña ni permisos del teléfono.</p>
-        </li>
-      </ol>
-      <p class="nota"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i><span>Para actualizar no hace falta volver aquí: la app avisa cuando hay versión nueva y se instala encima sin perder nada.</span></p>
-    </div>
-  </section>
-
-  <section id="iphone">
-    <div class="wrap">
-      <div class="encabezado">
-        <h2>Nurska en iPhone</h2>
-        <p>En iPhone, Nurska funciona como app web: se instala desde Safari, queda con su ícono en la pantalla de inicio y, después de la primera vez, funciona sin señal. Gratis y sin cuenta, igual que en Android.</p>
-      </div>
-      <p class="aviso-safari" id="aviso-safari" hidden><i class="ph-fill ph-warning-circle" aria-hidden="true"></i><span>Estás en otro navegador o dentro de una app como Instagram. Ábrela en <b>Safari</b> para poder instalar Nurska: toca el menú <b>···</b> y elige abrir en el navegador, o copia el enlace y pégalo en Safari.</span></p>
-      <ol class="pasos">
-        <li>
-          <h3>Ábrela en Safari</h3>
-          <p>Toca el botón de abajo <b>desde Safari</b>, el navegador de la brújula azul. En Chrome u otros navegadores no se instala bien.</p>
-        </li>
-        <li>
-          <h3>Espera a que cargue</h3>
-          <p>La primera vez tarda unos segundos en aparecer y unos 30 segundos más en guardarse completa. Déjala abierta con buena señal antes de instalarla.</p>
-        </li>
-        <li>
-          <h3>Agrégala a tu inicio</h3>
-          <p>Toca <b>Compartir</b> <i class="ph ph-export" aria-hidden="true"></i>, elige <b>Agregar a pantalla de inicio</b> y luego <b>Agregar</b>.</p>
-        </li>
-        <li>
-          <h3>Ábrela desde su ícono</h3>
-          <p>Usa siempre el ícono café de tu pantalla de inicio: desde ahí funciona sin señal y se actualiza sola cuando hay internet.</p>
-        </li>
-      </ol>
-      <div class="acciones iphone-acciones">
-        <a class="btn btn-oscuro js-webapp" data-ubicacion="seccion_iphone" href="app/"><i class="ph ph-apple-logo" aria-hidden="true"></i>Abrir Nurska en Safari</a>
-      </div>
-      <p class="nota"><i class="ph ph-info" aria-hidden="true"></i><span>La app web registra estadísticas anónimas de uso, como las pantallas que se abren, para saber qué mejorar. Nunca registra lo que escribes. Más detalles en el <a href="https://farkasokovo.github.io/nurska-privacidad/">aviso de privacidad</a>.</span></p>
-    </div>
-  </section>
-
-  <section id="seguridad">
+  <section id="seguridad" class="capturas-fondo">
     <div class="wrap">
       <div class="encabezado">
         <h2>¿Es seguro instalar Nurska?</h2>
@@ -771,12 +776,8 @@
       <h2>Lleva Nurska a tu turno</h2>
       <p>Gratis, sin registro y sin conexión. Hecho por enfermería, para enfermería.</p>
       <div class="acciones">
-      <a class="btn btn-claro js-descarga" data-ubicacion="cierre" href="https://github.com/farkasokovo/nurska-app/releases/latest/download/nurska.apk">
-        <i class="ph ph-download-simple" aria-hidden="true"></i>
-        Descargar gratis
-      </a>
-      <a class="btn btn-borde" href="#instalar"><i class="ph ph-question" aria-hidden="true"></i>¿Cómo instalar?</a>
-      <a class="btn btn-borde js-iphone" href="#iphone"><i class="ph ph-apple-logo" aria-hidden="true"></i>¿Tienes iPhone?</a>
+      <a class="btn btn-claro js-plataforma" data-plataforma="android" data-ubicacion="cierre" href="#android"><i class="ph-fill ph-android-logo" aria-hidden="true"></i>Descargar para Android</a>
+      <a class="btn btn-borde js-plataforma" data-plataforma="iphone" data-ubicacion="cierre" href="#iphone"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i>Descargar para iPhone</a>
       </div>
     </div>
   </section>
@@ -805,24 +806,43 @@ document.querySelectorAll(".js-descarga").forEach(function (a) {
   });
 });
 
-/* En iPhone el APK no sirve: los botones de descarga llevan a la sección de iPhone.
-   Si el iPhone usa otro navegador (Chrome, Firefox, Edge...), se avisa que abra Safari. */
+/* Instrucciones de instalación: Android por defecto; los botones "Descargar para..."
+   eligen la pestaña y bajan a la sección. También responde a #android y #iphone en la URL. */
 (function () {
+  var seccion = document.getElementById("instalar");
+  var titulo = document.getElementById("instalar-titulo");
+  var texto = document.getElementById("instalar-texto");
+  function elegir(p, bajar) {
+    ["android", "iphone"].forEach(function (x) {
+      document.getElementById("panel-" + x).hidden = x !== p;
+      document.getElementById("tab-" + x).setAttribute("aria-selected", x === p ? "true" : "false");
+    });
+    titulo.textContent = p === "iphone" ? "Nurska en iPhone" : "Nurska en Android";
+    texto.textContent = texto.dataset[p];
+    if (bajar) seccion.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  document.querySelectorAll(".selector button").forEach(function (b) {
+    b.addEventListener("click", function () { elegir(b.dataset.plataforma, false); });
+  });
+  document.querySelectorAll(".js-plataforma").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      elegir(a.dataset.plataforma, true);
+      if (typeof gtag === "function") gtag("event", "boton_plataforma", { plataforma: a.dataset.plataforma, ubicacion: a.dataset.ubicacion || "otro" });
+    });
+  });
+  var h = location.hash.replace("#", "");
+  if (h === "iphone" || h === "android" || h === "instalar") {
+    elegir(h === "iphone" ? "iphone" : "android", false);
+    setTimeout(function () { seccion.scrollIntoView({ block: "start" }); }, 0);
+  }
+
+  /* En iPhone: sin la barra de "vienes a actualizar" (es del APK) y, si abrió desde
+     Instagram, Chrome u otro navegador, aviso de que use Safari. */
   var ua = navigator.userAgent || "";
   var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   if (!ios) return;
-  document.querySelectorAll(".js-descarga").forEach(function (a) {
-    a.setAttribute("href", "#iphone");
-    a.classList.remove("js-descarga");
-    var t = a.lastChild;
-    if (t && t.nodeType === 3 && /Descargar/.test(t.textContent)) t.textContent = " Usar Nurska en iPhone";
-    if (/Descargar la última versión/.test(a.textContent)) a.textContent = "Usar Nurska en iPhone";
-  });
   var aviso = document.querySelector(".aviso"); if (aviso) aviso.style.display = "none";
-  document.querySelectorAll(".js-iphone").forEach(function (a) { a.hidden = true; a.style.display = "none"; });
-  document.querySelectorAll('a.btn[href="#instalar"]').forEach(function (a) { a.style.display = "none"; });
-  window.nurskaIOS = true;
-  document.getElementById("nota-version").textContent = "Gratis para iPhone, desde Safari";
   if (/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV/.test(ua)) {
     document.getElementById("aviso-safari").hidden = false;
   }
@@ -847,7 +867,7 @@ document.querySelectorAll(".js-webapp").forEach(function (a) {
       if (!tag) return;
       var apk = (data.assets || []).filter(function (a) { return /\.apk$/i.test(a.name || ""); })[0];
       var peso = apk && apk.size ? ", " + Math.round(apk.size / 1048576) + " MB" : "";
-      if (!window.nurskaIOS) document.getElementById("nota-version").textContent = "Versión " + tag + " para Android" + peso;
+      document.getElementById("nota-version").textContent = "Versión " + tag + " para Android" + peso;
       var huella = apk && /^sha256:/.test(apk.digest || "") ? apk.digest.slice(7) : "";
       if (huella) {
         document.getElementById("huella-apk").textContent = huella + " (versión " + tag + ")";
