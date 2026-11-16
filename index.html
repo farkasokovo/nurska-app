@@ -13,14 +13,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nurska | Referencia clínica de enfermería</title>
-  <meta name="description" content="Escalas, fármacos, calculadoras y fichas de consulta rápida para enfermería. Funciona sin señal, sin cuenta y sin anuncios. Gratis para Android.">
+  <meta name="description" content="Escalas, fármacos, dilución, calculadoras, procedimientos y fichas de consulta rápida para enfermería. Funciona sin señal, sin cuenta y sin anuncios. Gratis para Android.">
   <meta name="theme-color" content="#624933">
 
   <!-- Vista previa al compartir el enlace (WhatsApp, Facebook, etc.) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
   <meta property="og:title" content="Nurska | Referencia clínica de enfermería">
-  <meta property="og:description" content="Escalas, fármacos y calculadoras para consultar en pleno turno. Funciona sin señal. Gratis para Android.">
+  <meta property="og:description" content="Escalas, fármacos, dilución, calculadoras y procedimientos para consultar en pleno turno. Funciona sin señal. Gratis para Android.">
   <meta property="og:url" content="https://farkasokovo.github.io/nurska-app/">
   <meta property="og:image" content="https://farkasokovo.github.io/nurska-app/assets/nurska_icon.png">
 
@@ -292,6 +292,24 @@
   }
   .nota i { font-size: 1.2rem; color: var(--tinta-2); flex: none; margin-top: 2px; }
 
+
+  /* ¿Es seguro? */
+  .preguntas { display: grid; gap: 12px; max-width: 46rem; }
+  .preguntas details {
+    background: var(--papel);
+    border-radius: var(--r-tarjeta);
+    box-shadow: var(--sombra);
+    padding: 16px 20px;
+  }
+  .preguntas summary { cursor: pointer; font-weight: 600; color: var(--tinta-2); list-style-position: outside; }
+  .preguntas p { margin-top: 8px; font-size: .92rem; color: var(--tinta-3); line-height: 1.55; }
+  .preguntas a { color: var(--tinta-2); font-weight: 600; }
+  .huellas { margin: 12px 0 0; font-size: .85rem; }
+  .huellas div { padding-block: 8px; border-top: 1px solid var(--linea); }
+  .huellas dt { font-weight: 600; color: var(--tinta-2); }
+  .huellas dd { margin: 2px 0 0; color: var(--tinta-3); overflow-wrap: anywhere; }
+  .huellas dd.hash { font-family: ui-monospace, monospace; }
+
   /* Instalación: sí es una secuencia, por eso va numerada */
   .pasos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 18px; counter-reset: paso; }
   .pasos li {
@@ -376,7 +394,7 @@
       </div>
 
       <h1>Consulta rápida para tu turno.</h1>
-      <p class="lede">Nurska es una app gratuita de referencia clínica para enfermería: fármacos, escalas, calculadoras, normas oficiales y fichas esenciales, con fuente en cada dato y sin necesidad de internet. Es el proyecto de un estudiante de enfermería.</p>
+      <p class="lede">Nurska es una app gratuita de referencia clínica para enfermería: fármacos y su dilución, escalas, calculadoras, procedimientos, normas oficiales y fichas esenciales, con fuente en cada dato y sin necesidad de internet. Es el proyecto de un estudiante de enfermería.</p>
 
       <ul class="promesas">
         <li><i class="ph ph-wifi-slash" aria-hidden="true"></i>Funciona sin señal</li>
@@ -392,7 +410,7 @@
       <a class="btn btn-borde" href="#instalar"><i class="ph ph-question" aria-hidden="true"></i>¿Cómo instalar?</a>
       </div>
       <!-- Valor de respaldo: el script del final lo actualiza con el último Release -->
-      <p class="descarga-nota" id="nota-version">Versión 1.5.0 para Android</p>
+      <p class="descarga-nota" id="nota-version">Versión 2.0.0 para Android</p>
     </div>
 
     <div class="telefono">
@@ -419,7 +437,7 @@
             <span class="cuenta">17</span>
           </div>
           <dl>
-            <div><dt>Signos vitales</dt><dd>Adulto, con presión arterial según la NOM-030 y valores de laboratorio; pediátricos, interpretados por edad</dd></div>
+            <div><dt>Signos vitales</dt><dd>Del adulto, con tabla de presión arterial según la NOM-030; pediátricos, interpretados por edad</dd></div>
             <div><dt>Consciencia y sedación</dt><dd>Glasgow, Ramsay, RASS</dd></div>
             <div><dt>Valoración de riesgos</dt><dd>Braden, Downton, Maddox</dd></div>
             <div><dt>Emergencias y triaje</dt><dd>MEWS, qSOFA, índice de shock</dd></div>
@@ -432,13 +450,13 @@
           <div class="modulo-barra">
             <i class="ph-fill ph-syringe" aria-hidden="true"></i>
             <h3>Farmacología</h3>
-            <span class="cuenta">52 fármacos</span>
+            <span class="cuenta">55 fármacos</span>
           </div>
           <dl>
-            <div><dt>Grupos</dt><dd>Analgésicos, anestésicos, antiarrítmicos, antibióticos, anticoagulantes, antidepresivos, antieméticos, antihipertensivos, antiinflamatorios, broncodilatadores, diuréticos, electrolitos, hemostáticos, insulinas, opioides, protectores gástricos, vasodilatadores y vasopresores</dd></div>
-            <div><dt>Cada ficha</dt><dd>Indicaciones, contraindicaciones, vía de administración, farmacocinética, farmacodinamia, efectos adversos, interacciones, administración y precauciones</dd></div>
+            <div><dt>Grupos</dt><dd>Analgésicos, anestésicos, antiarrítmicos, antibióticos, anticoagulantes, antidepresivos, antidiabéticos orales, antieméticos, antihipertensivos, antiinflamatorios, broncodilatadores, diuréticos, electrolitos, hemostáticos, insulinas, opioides, protectores gástricos, vasodilatadores y vasopresores</dd></div>
+            <div><dt>Cada ficha</dt><dd>Indicaciones, contraindicaciones, vía de administración, farmacocinética, farmacodinamia, efectos adversos, interacciones, observaciones de administración, embarazo y lactancia</dd></div>
             <div><dt>Alto riesgo</dt><dd>Marca visible en los fármacos que la requieren</dd></div>
-            <div><dt>NursClips</dt><dd>Pestaña con lo esencial del video en los fármacos que tienen uno</dd></div>
+            <div><dt>Dilución</dt><dd>Diluyente, volumen y tiempo de administración de 39 fármacos</dd></div>
           </dl>
         </article>
 
@@ -446,14 +464,30 @@
           <div class="modulo-barra">
             <i class="ph-fill ph-calculator" aria-hidden="true"></i>
             <h3>Calculadoras</h3>
-            <span class="cuenta">5</span>
+            <span class="cuenta">9</span>
           </div>
           <dl>
             <div><dt>Dosis</dt><dd>Regla de tres, con conversor entre mcg, mg y g</dd></div>
-            <div><dt>Goteo intravenoso</dt><dd>En horas o minutos</dd></div>
+            <div><dt>Goteo e infusión</dt><dd>Gotas por minuto, en horas o minutos, e infusión continua en mL/h</dd></div>
             <div><dt>Presión arterial media</dt><dd>PAM a partir de sistólica y diastólica</dd></div>
             <div><dt>Soluciones glucosadas</dt><dd>Por dilución o mezcla de dos soluciones</dd></div>
-            <div><dt>Pérdidas insensibles</dt><dd>Para el balance de líquidos</dd></div>
+            <div><dt>Líquidos</dt><dd>Pérdidas insensibles, balance de líquidos y diuresis horaria</dd></div>
+            <div><dt>Cálculo de horario</dt><dd>Hora de la próxima dosis en formato de 24 horas</dd></div>
+          </dl>
+        </article>
+
+        <article class="modulo">
+          <div class="modulo-barra">
+            <i class="ph-fill ph-list-checks" aria-hidden="true"></i>
+            <h3>Procedimientos</h3>
+            <span class="cuenta">Nuevo</span>
+          </div>
+          <dl>
+            <div><dt>Antes de cada procedimiento</dt><dd>Lo que se repite siempre, reunido en una sola guía</dd></div>
+            <div><dt>Accesos vasculares</dt><dd>Canalización venosa periférica</dd></div>
+            <div><dt>Vía aérea</dt><dd>Aspiración de secreciones con sistema abierto y con sistema cerrado</dd></div>
+            <div><dt>Sondas</dt><dd>Instalación de sonda vesical (Foley)</dd></div>
+            <div><dt>Cada ficha</dt><dd>Material para marcar, pasos en tarjetas o en lista y avance guardado</dd></div>
           </dl>
         </article>
 
@@ -461,13 +495,13 @@
           <div class="modulo-barra">
             <i class="ph-fill ph-chalkboard-teacher" aria-hidden="true"></i>
             <h3>Esenciales</h3>
-            <span class="cuenta">16 fichas</span>
+            <span class="cuenta">24 fichas</span>
           </div>
           <dl>
-            <div><dt>Insumos</dt><dd>Orden de llenado de tubos, calibres de catéter periférico, soluciones intravenosas, catéter venoso central, catéter PICC</dd></div>
-            <div><dt>Paciente</dt><dd>Regiones abdominales, toma de presión arterial, fístula arteriovenosa</dd></div>
+            <div><dt>Insumos</dt><dd>Orden de llenado de tubos, calibres de catéter periférico, soluciones intravenosas, catéter venoso central, catéter PICC, hemocomponentes y transfusión segura</dd></div>
+            <div><dt>Paciente</dt><dd>Regiones abdominales, toma de presión arterial, fístula arteriovenosa, gasometría arterial, valores de laboratorio del adulto, reacciones extrapiramidales</dd></div>
             <div><dt>Equipo</dt><dd>Dispositivos de oxígeno de bajo y alto flujo, drenajes, modos ventilatorios básicos, ventiladores mecánicos</dd></div>
-            <div><dt>Códigos</dt><dd>Código azul, Acciones Esenciales para la Seguridad del Paciente, precauciones de aislamiento, hora dorada en neutropenia febril</dd></div>
+            <div><dt>Códigos</dt><dd>Código azul, ritmos de paro cardiaco, interpretación básica del electrocardiograma, Acciones Esenciales para la Seguridad del Paciente, correctos de la medicación, precauciones de aislamiento del IMSS, abreviaturas clínicas, hora dorada en neutropenia febril</dd></div>
           </dl>
         </article>
 
@@ -496,11 +530,10 @@
         <p>Colores cálidos, letra grande y botones pensados para usarse con una mano.</p>
       </div>
       <div class="capturas">
-        <img src="assets/img/escalas.webp" alt="Escala de riesgo de caídas con el resultado de 3 puntos, riesgo alto" width="540" height="960" loading="lazy">
-        <img src="assets/img/farmaco.webp" alt="Ficha de un fármaco con indicaciones, vía de administración y contraindicaciones" width="540" height="960" loading="lazy">
-        <img src="assets/img/nursclips.webp" alt="Pestaña de NursClips dentro de la ficha de un fármaco" width="540" height="960" loading="lazy">
-        <img src="assets/img/calculadora.webp" alt="Calculadora de dosis con el resultado en mililitros a administrar" width="540" height="960" loading="lazy">
-        <img src="assets/img/esenciales.webp" alt="Ficha esencial de cuidados de la fístula arteriovenosa" width="540" height="960" loading="lazy">
+        <img src="assets/img/escalas.webp" alt="Escala de Downton con el resultado de 3 puntos, riesgo alto de caídas" width="540" height="960" loading="lazy">
+        <img src="assets/img/farmaco.webp" alt="Ficha de tramadol con las pastillas de vía, embarazo y lactancia, y su farmacodinamia" width="540" height="960" loading="lazy">
+        <img src="assets/img/calculadora.webp" alt="Calculadora de regla de tres con dosis indicada, diluyente y presentación del fármaco" width="540" height="960" loading="lazy">
+        <img src="assets/img/esenciales.webp" alt="Ficha esencial de ritmos de paro cardiaco con su tabla y un trazo de fibrilación ventricular" width="540" height="960" loading="lazy">
       </div>
     </div>
   </section>
@@ -556,6 +589,37 @@
     </div>
   </section>
 
+  <section id="seguridad">
+    <div class="wrap">
+      <div class="encabezado">
+        <h2>¿Es seguro instalar Nurska?</h2>
+        <p>Es normal dudar de una app que no viene de una tienda. Estas son las respuestas, y la forma de comprobarlas por tu cuenta.</p>
+      </div>
+      <div class="preguntas">
+        <details>
+          <summary>¿Por qué Android me advierte al instalarla?</summary>
+          <p>Porque Nurska se descarga desde esta página y no desde Play Store. Android muestra el mismo aviso con cualquier app que no sale de la tienda, sea cual sea; no significa que el archivo tenga algo malo.</p>
+        </details>
+        <details>
+          <summary>¿Qué permisos pide?</summary>
+          <p>Ninguno que tengas que aceptar: no usa cámara, micrófono, contactos, ubicación ni tus archivos, y no pide correo ni contraseña. Solo se conecta a internet para avisarte cuando hay versión nueva; todo el contenido funciona sin señal y no guarda ni envía datos de tus pacientes.</p>
+        </details>
+        <details>
+          <summary>¿De dónde sale el archivo?</summary>
+          <p>De la página oficial de Nurska en GitHub, donde se publica cada versión. Todas van firmadas con la misma llave del desarrollador: si alguien modificara el archivo, Android no dejaría instalarlo encima de tu Nurska.</p>
+        </details>
+        <details>
+          <summary>¿Cómo lo compruebo yo?</summary>
+          <p>Puedes revisar el archivo de la versión actual en <a id="enlace-virustotal" href="https://www.virustotal.com/" target="_blank" rel="noopener">VirusTotal</a>, un servicio que lo analiza con decenas de antivirus a la vez. Play Protect también lo escanea al instalarlo.</p>
+          <dl class="huellas">
+            <div><dt>Huella del archivo (SHA-256)</dt><dd id="huella-apk">Aparece junto al archivo en <a href="https://github.com/farkasokovo/nurska-app/releases/latest" target="_blank" rel="noopener">la página de la versión en GitHub</a></dd></div>
+            <div><dt>Huella del certificado de firma (SHA-256)</dt><dd class="hash">73:38:F7:73:C2:48:19:3E:B5:11:69:1E:41:00:6A:2C:47:2D:ED:04:C3:76:9F:F8:3D:B7:5C:D5:73:CE:54:21</dd></div>
+          </dl>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section id="novedades">
     <div class="wrap">
       <div class="encabezado">
@@ -564,20 +628,41 @@
       </div>
 
       <div class="version">
-        <div class="version-cabeza"><b>Versión 1.5.0</b><span>31 de octubre de 2026</span></div>
+        <div class="version-cabeza"><b>Versión 2.0.0</b><span>15 de noviembre de 2026</span></div>
         <ul>
-          <li>Bienvenida para quien instala Nurska por primera vez: qué trae, cómo se usa, contacto y apoyo voluntario.</li>
-          <li>La app inicia en tema claro y recuerda el tema que se elija en el menú.</li>
-          <li>Farmacología pasa de 42 a 52 fármacos, con tres categorías nuevas (antiarrítmicos, opioides y vasopresores) y rifampicina en antibióticos.</li>
-          <li>Las fichas de los fármacos que aparecen en NursClips suman una pestaña con lo esencial del video.</li>
-          <li>Normativas pasa de 3 a 9 normas oficiales, con cuatro categorías nuevas: expediente clínico, infecciones, urgencias y cuidados intensivos, y obstetricia y neonatología.</li>
-          <li>Acerca de suma los enlaces de NursClips y un botón de donación voluntaria.</li>
+          <li>Nuevo módulo Procedimientos: antes de cada procedimiento, canalización venosa periférica, aspiración de secreciones con sistema abierto y cerrado, e instalación de sonda vesical (Foley). Pasos en tarjetas o en lista, material para marcar, avance guardado y opción de reportar.</li>
+          <li>Nueva sección Dilución en Farmacología con 39 fármacos: diluyente, volumen y tiempo de administración, con favoritos propios y un aviso de uso la primera vez.</li>
+          <li>Farmacología pasa de 52 a 55 fármacos con la nueva categoría Antidiabéticos orales: metformina, dapagliflozina y sitagliptina.</li>
+          <li>Fichas de fármacos renovadas: observaciones en tarjetas, pastillas de embarazo y lactancia, laboratorio de referencia y contenido revisado por laboratorio.</li>
+          <li>Se eliminó la pestaña NursClips de las fichas de medicamentos; los enlaces al canal se conservan.</li>
+          <li>Esenciales pasa de 21 a 24 fichas: interpretación básica del ECG con trazos, valores de laboratorio del adulto y reacciones extrapiramidales. Aislamiento se rehízo con las precauciones del IMSS, se suma la tabla de lúmenes del CVC y las imágenes se amplían con zoom.</li>
+          <li>Nueva calculadora: Cálculo de horario.</li>
+          <li>Signos vitales: tabla de presión arterial deslizable en el adulto (el laboratorio pasa a su propia ficha) y tablas pediátricas deslizables con la edad fija.</li>
+          <li>Escalas con nuevo indicador de avance; Pérdidas insensibles pregunta un parámetro a la vez.</li>
+          <li>En calculadoras, Índice de shock y Signos vitales, Enter pasa al siguiente campo.</li>
+          <li>Vibración ligera al elegir opciones, copiar, marcar favoritos, calcular y regresar.</li>
+          <li>"Material de apoyo" ahora se llama "Referencias" en toda la app.</li>
+          <li>Las pantallas ya no quedan detrás de la barra de 3 botones.</li>
+          <li>Optimización: el APK es más ligero.</li>
           <li>Corrección de errores.</li>
         </ul>
       </div>
 
       <details class="anteriores">
         <summary>Versiones anteriores</summary>
+        <div class="version">
+          <div class="version-cabeza"><b>Versión 1.5.0</b><span>31 de octubre de 2026</span></div>
+          <ul>
+            <li>Bienvenida para quien instala Nurska por primera vez: qué trae, cómo se usa, contacto y apoyo voluntario.</li>
+            <li>La app inicia en tema claro y recuerda el tema que se elija en el menú.</li>
+            <li>Farmacología pasa de 42 a 52 fármacos, con tres categorías nuevas (antiarrítmicos, opioides y vasopresores) y rifampicina en antibióticos.</li>
+            <li>Las fichas de los fármacos que aparecen en NursClips suman una pestaña con lo esencial del video.</li>
+            <li>Normativas pasa de 3 a 9 normas oficiales, con cuatro categorías nuevas: expediente clínico, infecciones, urgencias y cuidados intensivos, y obstetricia y neonatología.</li>
+            <li>Acerca de suma los enlaces de NursClips y un botón de donación voluntaria.</li>
+            <li>Corrección de errores.</li>
+          </ul>
+        </div>
+
         <div class="version">
           <div class="version-cabeza"><b>Versión 1.4.0</b><span>Octubre de 2026</span></div>
           <ul>
@@ -691,6 +776,12 @@ document.querySelectorAll(".js-descarga").forEach(function (a) {
       var apk = (data.assets || []).filter(function (a) { return /\.apk$/i.test(a.name || ""); })[0];
       var peso = apk && apk.size ? ", " + Math.round(apk.size / 1048576) + " MB" : "";
       document.getElementById("nota-version").textContent = "Versión " + tag + " para Android" + peso;
+      var huella = apk && /^sha256:/.test(apk.digest || "") ? apk.digest.slice(7) : "";
+      if (huella) {
+        document.getElementById("huella-apk").textContent = huella + " (versión " + tag + ")";
+        document.getElementById("huella-apk").className = "hash";
+        document.getElementById("enlace-virustotal").href = "https://www.virustotal.com/gui/file/" + huella;
+      }
     })
     .catch(function () {});
 })();
